@@ -1,12 +1,12 @@
-# Project Name
+# Boundless Avocado
 
-> Pithy project description
+> Meetup on the Fly
 
 ## Team
 
-  - __Product Owner__: teamMember
-  - __Scrum Master__: teamMember
-  - __Development Team Members__: teamMember, teamMember
+  - __Product Owner__: David Ernst
+  - __Scrum Master__: Michael DeLucco
+  - __Test Champion__: Peter Kim
 
 ## Table of Contents
 
@@ -20,15 +20,15 @@
 
 ## Usage
 
-> Some usage instructions
+> Create and join groups that you are interested in, then invite others to join you.
 
 ## Requirements
 
 - Node 0.10.x
-- Redis 2.6.x
-- Postgresql 9.1.x
-- etc
-- etc
+- MySQL
+- friends
+
+
 
 ## Development
 
@@ -44,7 +44,7 @@ bower install
 
 ### Roadmap
 
-View the project roadmap [here](LINK_TO_PROJECT_ISSUES)
+View the project roadmap [here](https://github.com/Boundless-Avocado/2014-12-greenfield)
 
 
 ## Contributing
