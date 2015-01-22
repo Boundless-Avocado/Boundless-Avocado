@@ -1,6 +1,6 @@
 angular.module('boundless.groups', [])
 
-.controller('GroupsController', function($scope, Groups) {
+.controller('GroupsController', function($scope) {
 	//hold data here after quering db
 	$scope.data = {};
 
@@ -15,4 +15,4 @@ angular.module('boundless.groups', [])
 
 	$scope.getGroups();
 
-})
+})	
