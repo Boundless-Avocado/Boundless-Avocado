@@ -1,16 +1,23 @@
 angular.module('boundless', [
+	'ui.router'
 ])
-.config(function($routeProvider, $httpProvider) {
-	$routeProvider
-		.when('/signin' ,{
-			templateUrl: 'app/auth/singin.html',
-			controller: 'AuthController'
+.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+	$urlRouterProvider.otherwise('/groups');
+
+	$stateProvider
+		.state('groups', {
+			templateUrl: 'app/group/groups.html',
+			controller: 'GroupsController',
+			url: '/groups'
 		})
-		.when('/signup', {
-			templateUrl: 'app/auth/singup.html',
-			controller: 'AuthController'
-		})
+		
 })
+
+.controller('BoundlessController', ['$scope','$steateParams', function($scope, $stateParams){
+		console.log($stateParams.name);
+
+}])
+
 .factory('', {
 
 })
@@ -18,7 +25,7 @@ angular.module('boundless', [
 .run(function ($rootScope, $location, Auth) {
 	$rootScope.$on('$routeChangeStart', function (evt, next, current) {
 	    if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
-	      $location.path('/signin');
+	      $location.path('/');
 	    }
 	  });
 });
