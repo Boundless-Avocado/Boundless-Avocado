@@ -11,7 +11,7 @@ angular.module('boundless', [
 			controller: 'AuthController'
 		})
 })
-.factory('') {
+.factory('', {
 
 })
 
