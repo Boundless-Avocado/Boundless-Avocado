@@ -2,25 +2,23 @@
 <html ng-app='boundless'>
 	<head>
 		<title>Boundless</title>
-		<link rel='stylesheet' type='text/css' href='styles/stylesheet.css' />
+		<link rel='stylesheet' type='text/css' href='client/styles/stylesheet.css' />
+		<link href="client/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="client/styles/stylesheet.css" rel="stylesheet">
+
 		<meta charset="utf-8">
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
+
 		<link rel="icon" href="../../favicon.ico">
 
 		<title>GUACAMOLE!</title>
-
-		<!-- Bootstrap core CSS -->
-		<link href="dist/dist/css/bootstrap.min.css" rel="stylesheet">
-
-		<!-- Custom styles for this template -->
-		<link href="styles/stylesheet.css" rel="stylesheet">
-
+		
 		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
 		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-		<script src="assets/ie-emulation-modes-warning.js"></script>
+		<script src="client/assets/ie-emulation-modes-warning.js"></script>
 		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
 
 		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
@@ -58,9 +56,10 @@
 		    </div><!--/.navbar-collapse -->
 		  </div>
 		</nav>
+		
 
-		<div ng-view>
-			
+		<!-- Where Angular will render different html -->
+		<div ui-view>
 
 			<div class="container">
 				  <!-- Example row of columns -->
@@ -75,6 +74,11 @@
 				      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
 				      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
 				   </div>
+				   <div class="col-md-4">
+				      <h2>Heading</h2>
+				      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+				      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+				    </div>
 				    <div class="col-md-4">
 				      <h2>Heading</h2>
 				      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
@@ -85,23 +89,30 @@
 				  <hr>
 
 				  <footer>
-				    <p>&copy; Boundless Avocad 2015</p>
+				    <p>&copy; Boundless Avocado 2015</p>
 				  </footer>
+
 				</div> <!-- /container -->
 		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="dist/dist/js/bootstrap.min.js"></script>
+		<script src="client/dist/dist/js/bootstrap.min.js"></script>
 		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-		<script src="assets/ie10-viewport-bug-workaround.js"></script>
+		<script src="client/assets/ie10-viewport-bug-workaround.js"></script>
 
-		<script src='app/auth/auth.js'></script>
-		<script src='app/groups/groups.js'></script>
-		<script src='app/services/services.js'></script>
-		<script src='app/app.js'></script>
-		<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src='client/app/auth/auth.js'></script>
+		<script src='client/app/groups/groups.js'></script>
+		<script src='client/app/services/services.js'></script>
+		<script src='client/app.js'></script>
+		<script src="client/lib/angular-ui-router/release/angular-ui-router.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-		<script src="dist/dist/js/bootstrap.min.js"></script>
+		<script src="client/dist/dist/js/bootstrap.min.js"></script>
+		<script>
+		    var myApp = angular.module('myApp', ['ui.router']);
+		    // For Component users, it should look like this:
+		    // var myApp = angular.module('myApp', [require('angular-ui-router')]);
+		</script>
 	</body>
 	
 </html>
+

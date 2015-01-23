@@ -15,10 +15,10 @@ angular.module('boundless', [
 			url: '/groups'
 		})
 
-		// .state('groups', {
-		// 	templateUrl: 'app/groups/groups.html',
+		// .state('signin', {
+		// 	templateUrl: 'client/app/signin/signin.html',
 		// 	controller: 'GroupsController',
-		// 	url: '/'
+		// 	url: '/signin'
 		// })
 
 		
