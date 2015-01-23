@@ -39,7 +39,8 @@ angular.module('boundless.services', [])
 			return resp.data;
 		})
 	};
-		
+
+		//this should query server for a confirmation code
 	var signup = function(user) {
 		return $http({
 			method: 'POST',
@@ -50,6 +51,18 @@ angular.module('boundless.services', [])
 			return resp.data;
 		})
 	};
+
+		//this should query server if confirmation code matches
+	var confirm = function(code) {
+		return $http({
+			method: 'POST',
+			url: '/api/users/confirm',
+			data: code
+		})
+		.then(function(resp) {
+			return resp.data;
+		})
+	}
 
 	var signout = function() {
 
@@ -63,7 +76,8 @@ angular.module('boundless.services', [])
 		signin: signin,
 		singup: signup,
 		isAuth: isAuth,
-		signout: signout
+		signout: signout,
+		confirm : confirm
 	};
 });
 

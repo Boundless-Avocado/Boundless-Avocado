@@ -2,7 +2,8 @@
 angular.module('boundless', [
 	'ui.router',
 	'boundless.groups',
-	'boundless.services'
+	'boundless.services',
+	'boundless.auth'
 ])
 	//using ui-router to route client
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
@@ -18,18 +19,35 @@ angular.module('boundless', [
 			url: '/groups'
 		})
 
-		// .state('signin', {
-		// 	templateUrl: 'client/app/signin/signin.html',
-		// 	controller: 'GroupsController',
-		// 	url: '/signin'
-		// })
+		.state('signin', {
+			templateUrl: 'client/app/auth/signin.html',
+			controller: 'AuthController',
+			url: '/signin'
+		})
+
+		.state('signup', {
+			templateUrl: 'client/app/auth/signup.html',
+			controller: 'AuthController',
+			url: '/signup'
+		})
+
+		.state('confirmation', {
+			templateUrl: 'client/app/auth/confirmation.html',
+			controller: 'AuthController',
+			url: '/confirmation'
+		})
 
 		
 })
 
 	//dont know what to use controller for here
-.controller('BoundlessController', ['$scope','$stateParams', function($scope, $stateParams){
-		
+.controller('BoundlessController', ['$scope','$location','$stateParams', function($scope, $location, $stateParams){
+	
+	$scope.go = function ( path ) {
+		console.log('redirected');
+  $location.path( path );
+	};
+
 }])
 
 .run(function ($rootScope, $location) {
