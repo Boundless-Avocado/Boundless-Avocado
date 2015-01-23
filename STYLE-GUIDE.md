@@ -2,7 +2,7 @@
 
 When writing any block of code that is logically subordinate to the line immediately before and after it, that block should be indented two spaces more than the surrounding lines
 
-* Do not put any tab characters anywhere in your code. You would do best to stop pressing the tab key entirely.
+* Do not put any tab characters anywhere in your code.
 * Increase the indent level for all blocks by two extra spaces
     * When a line opens a block, the next line starts 2 spaces further in than the line that opened
 
@@ -83,7 +83,7 @@ When writing any block of code that is logically subordinate to the line immedia
 
 ### Language constructs
 
-* Do not use `for...in` statements with the intent of iterating over a list of numeric keys. Use a for-with-semicolons statement in stead.
+* Do not use `for...in` statements with the intent of iterating over a list of numeric keys. Use a for-with-semicolons statement instead.
 
   ```javascript
   // good:
@@ -129,7 +129,7 @@ When writing any block of code that is logically subordinate to the line immedia
     }
     ```
 
-* Don't use function statements for the entire first half of the course. They introduce a slew of subtle new rules to how the language behaves, and without a clear benefit. Once you and all your peers are expert level in the second half, you can start to use the more (needlessly) complicated option if you like.
+* Don't use function statements. They introduce a slew of subtle new rules to how the language behaves, and without a clear benefit.
 
     ```javascript
     // good:
@@ -186,7 +186,7 @@ When writing any block of code that is logically subordinate to the line immedia
 ### Code density
 
 * Conserve line quantity by minimizing the number lines you write in. The more concisely your code is written, the more context can be seen in one screen.
-* Conserve line length by minimizing the amount of complexity you put on each line. Long lines are difficult to read. Rather than a character count limit, I recommend limiting the amount of complexity you put on a single line. Try to make it easily read in one glance. This goal is in conflict with the line quantity goal, so you must do your best to balance them.
+* Conserve line length by minimizing the amount of complexity you put on each line. Long lines are difficult to read. Rather than a character count limit, try to limit the amount of complexity you put on a single line. Try to make it easily read in one glance. This goal is in conflict with the line quantity goal, so you must do your best to balance them.
 
 ### Comments
 
@@ -239,23 +239,7 @@ When writing any block of code that is logically subordinate to the line immedia
 
 ### Working with files
 
-* Do not end a file with any character other than a newline.
-* Don't use the -a or -m flags for `git commit` for the first half of the class, since they conceal what is actually happening (and do slightly different things than most people expect).
-
-    ```shell
-    # good:
-    > git add .
-    > git commit
-    [save edits to the commit message file using the text editor that opens]
-
-    # bad:
-    > git commit -a
-    [save edits to the commit message file using the text editor that opens]
-
-    # bad:
-    > git add .
-    > git commit -m "updated algorithm"
-    ```
+* End files with a newline.
 
 
 ### Opening or closing too many blocks at once
@@ -301,7 +285,6 @@ When writing any block of code that is logically subordinate to the line immedia
 
 * Some people choose to use capitalization of the first letter in their variable names to indicate that they contain a [class](http://en.wikipedia.org/wiki/Class_(computer_science\)). This capitalized variable might contain a function, a prototype, or some other construct that acts as a representative for the whole class.
 * Optionally, some people use a capital letter only on functions that are written to be run with the keyword `new`.
-* Do not use all-caps for any variables. Some people use this pattern to indicate an intended "constant" variable, but the language does not offer true constants, only mutable variables.
 
 
 ### Minutia
@@ -340,7 +323,7 @@ When writing any block of code that is logically subordinate to the line immedia
 
 * Avoid use of `switch` statements altogether. They are hard to outdent using the standard whitespace rules above, and are prone to error due to missing `break` statements. See [this article](http://ericleads.com/2012/12/switch-case-considered-harmful/) for more detail.
 
-* Prefer single quotes around JavaScript strings, rather than double quotes. Having a standard of any sort is preferable to a mix-and-match approach, and single quotes allow for easy embedding of HTML, which prefers double quotes around tag attributes.
+* Prefer single quotes around JavaScript strings, rather than double quotes. Single quotes allow for easy embedding of HTML, which prefers double quotes around tag attributes.
 
     ```javascript
     // good:
