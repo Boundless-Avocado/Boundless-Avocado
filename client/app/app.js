@@ -5,6 +5,7 @@ angular.module('boundless', [
 ])
 	//using ui-router
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+	
 	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
