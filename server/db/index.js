@@ -1,36 +1,56 @@
-var express = require('express');
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('avocado', 'root', 'boundless');
+var sequelize = new Sequelize('avocados', 'root', '', {dialect: 'mysql'});
 
 var Groups = sequelize.define('Groups', {
-  groupName: Sequelize.STRING
+  name: Sequelize.STRING
 });
-
-var Memberships = sequelize.define('Memberships', {});
 
 var Users = sequelize.define('Users', {
   username: Sequelize.STRING,
   email: Sequelize.STRING,
-  phone: Sequelize.INTEGER
+  phone: Sequelize.BIGINT
 });
 
-Groups.hasMany(Users, {through: 'Memberships'});
-Users.hasMany(Groups, {through: 'Memberships'});
+// var Memberships = sequelize.define('Memberships', {});
+// Memberships.sync();
 
-exports.groupBuilder = function(obj){
-  Groups.sync().success(function(obj){
-  var group = Groups.build(obj);
-  group.save();
-});
+sequelize.define('Memberships', {}).sync();
 
-exports.membershipBuilder = function(obj){
-  Memberships.sync();
+Groups.belongsToMany(Users, {through: 'Memberships'});
+Users.belongsToMany(Groups, {through: 'Memberships'});
+
+exports.groupBuilder = function (obj) {
+  Groups.sync().then(function () {
+    var group = Groups.build(obj);
+    group.save();
+  });
 };
 
-exports.userBuilder = function(obj){
-  Users.sync().success(function(obj){
+exports.userBuilder = function (obj) {
+  Users.sync().then(function () {
     var user = Users.build(obj);
     user.save();
   });
 };
+
+exports.addToGroup = function(groupName, username){
+  Groups.findOne({where: {name: groupName}}).then(function (group) {
+    console.log('found one group')
+    Users.findOne({where: {username: username}}).then(function (user) {
+      console.log('found one user')
+      user.addGroups(group);
+    });
+  });
+};
+// exports.groupBuilder({name: 'frisbee2'});
+// exports.groupBuilder({name: 'frisbee3'});
+// exports.groupBuilder({name: 'frisbee4'});
+// exports.groupBuilder({name: 'frisbee5'});
+
+// exports.userBuilder({username: 'mikey'});
+// exports.userBuilder({username: 'michael'});
+// exports.userBuilder({username: 'michelangelo'});
+
+// exports.addToGroup('frisbee4','michael');
+// debugger;
