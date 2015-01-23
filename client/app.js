@@ -1,10 +1,13 @@
-//main angular app for client side
+	//main angular app for client side
 angular.module('boundless', [
 	'ui.router',
-	'boundless.groups'
+	'boundless.groups',
+	'boundless.services'
 ])
-	//using ui-router
+	//using ui-router to route client
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+		
+		//reroutes to '/' as 
 	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
@@ -23,17 +26,18 @@ angular.module('boundless', [
 
 		
 })
-	//not quite sure what this does yet
-// .controller('BoundlessController', ['$scope','$stateParams', function($scope, $stateParams){
-		
-// }])
 
-// .run(function ($rootScope, $location) {
-// 	console.log('run');
-// 	$rootScope.$on('$routeChangeStart', function (evt, next, current) {
-// 	    // if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
-// 	      $location.path('/client/index.html');
-// 	      console.log('run');
-// 	    // }
-// 	  });
-// });
+	//dont know what to use controller for here
+.controller('BoundlessController', ['$scope','$stateParams', function($scope, $stateParams){
+		
+}])
+
+.run(function ($rootScope, $location) {
+	console.log('run');
+	$rootScope.$on('$routeChangeStart', function (evt, next, current) {
+	    // if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
+	      $location.path('/client/index.html');
+	      console.log('run');
+	    // }
+	  });
+});

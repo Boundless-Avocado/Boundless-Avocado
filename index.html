@@ -51,7 +51,7 @@
 		          <input type="password" placeholder="Password" class="form-control">
 		        </div>
 		        <button type="submit" class="btn btn-success">Sign in</button>
-		        <button type="submit" class="btn btn-success">Sign up</button>
+		        <!-- <button type="submit" class="btn btn-success">Sign up</button> -->
 		      </form>
 		    </div><!--/.navbar-collapse -->
 		  </div>
@@ -59,9 +59,8 @@
 		
 
 		<!-- Where Angular will render different html -->
-		<div ui-view>
 		<button ui-sref="groups">Groups</button>
-			<div class="container">
+			<div class="container" ui-view>
 				  <!-- Example row of columns -->
 				  <div class="row">
 				    <div class="col-md-4">
@@ -93,7 +92,6 @@
 				  </footer>
 
 				</div> <!-- /container -->
-		</div>
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="client/dist/dist/js/bootstrap.min.js"></script>
@@ -107,11 +105,6 @@
 		<script src="client/lib/angular-ui-router/release/angular-ui-router.js"></script>
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 		<script src="client/dist/dist/js/bootstrap.min.js"></script>
-		<script>
-		    var myApp = angular.module('myApp', ['ui.router']);
-		    // For Component users, it should look like this:
-		    // var myApp = angular.module('myApp', [require('angular-ui-router')]);
-		</script>
 	</body>
 	
 </html>
