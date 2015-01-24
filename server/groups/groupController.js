@@ -1,8 +1,16 @@
 var Group = require('./groupModel.js');
 
 module.exports = {
-  findGroup: function (req, res, next group) {
-
+  findGroup: function (req, res, next, groupName) {
+    Groups.findOne({where: {name: groupName}})
+    .then(function (group) {
+      if (!group) {
+        console.log('user is searching for "' + groupName + '", but not in database');
+      } else {
+        req.groupId = group.id;
+        next();
+      }
+    })
   },
 
   create: function (req, res) {
@@ -17,13 +25,10 @@ module.exports = {
   },
 
   join: function (req, res) {
-    addToGroup = function(groupName, username){
-      Groups.findOne({where: {name: groupName}}).then(function (group) {
-        Users.findOne({where: {username: username}}).then(function (user) {
-          user.addGroups(group);
-        });
-      });
-    };
+    Users.findOne({where: {username: req.body.username}})
+    .then(function (user) {
+      user.addGroups(req.groupId);
+    });
   },
 
   ping: function (req, res) {
