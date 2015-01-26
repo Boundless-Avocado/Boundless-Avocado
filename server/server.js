@@ -1,12 +1,23 @@
 var express = require('express');
+var keys = require('./keys');
 
 var app = express();
 
 // configure our server with all the middleware and and routing
-require('./config/middleware.js')(app, express);
+//require('./config/middleware.js')(app, express);
 
 // export our app for testing and flexibility, required by index.js
 module.exports = app;
+
+var client = require('twilio')(keys.accountSid, keys.authToken);
+ 
+client.messages.create({
+    body: "Twilio is my bitch",
+    to: "+14157062795",
+    from: "+14158149655"
+}, function(err, message) {
+    process.stdout.write(message.sid);
+});
 
 /* Walkthrough of the server
 
