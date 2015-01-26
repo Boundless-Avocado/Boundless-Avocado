@@ -1,4 +1,4 @@
-var sequelize = require('./db/index.js');
+var sequelize = require('../db/index.js');
 var Users = require('./users/userModel.js');
 
 var Groups = sequelize.define('Groups', {
