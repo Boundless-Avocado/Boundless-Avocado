@@ -1,21 +1,31 @@
 angular.module('boundless.groups', [])
 
-.controller('GroupsController', function($scope) {
+.controller('GroupsController', function($scope, Groups) {
 	//hold data here after quering db
 	$scope.data = {
-		groupName: 'Test Group Name',
-		testData: 'test data here'
+		groupNameTest: 'Test Group Name',
+		testData: 'test data here',
+		groups: {}
 	};
 
-	//uses 
-	// $scope.getGroups = function() {
-	// 	Groups.getAll()
-	// 	.then(function (groups) {
-	// 		console.log(groups);
-	// 		$scope.data = groups;
-	// 	})
-	// };
+	$scope.joinGroup = function() {
+		Groups.joinGroup()
+	};
 
-	// $scope.getGroups();
+	 
+	$scope.getGroups = function() {
+		Groups.getGroup()
+		.then(function (groupData) {
+			console.log(groupData);
+			$scope.data.groups = groupData;
+		})
+	};
 
-})	
+	$scope.createGroup = function() {
+		Groups.createGroup($scope.data.newGroupName)
+		.then(function(groupData) {
+			console.log(groupData);
+		})
+	};
+
+});	
