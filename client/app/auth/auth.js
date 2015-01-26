@@ -9,7 +9,7 @@ angular.module('boundless.auth', [])
 		Auth.signin($scope.user)
 			.then(function(token) {
 					//this is where we will will set a token/cookie/jwt
-				// $window.localStorage.setItem('our url here', token);
+				$window.localStorage.setItem('our url here', token);
 				$location.path('/groups');
 			})
 			.catch(function(error) {
@@ -20,14 +20,11 @@ angular.module('boundless.auth', [])
 		//on signup, user is issued token
 	$scope.signup = function() {
 		Auth.signup($scope.user) 
-				//need to request a confirmation code here
-			// .then(function(token) {
-			// 		//this is where we will will set a token/cookie/jwt
-			// 	// $window.localStorage.setItem('our url here', token);
-			// })
-			.catch(function(error) {
-				console.log(error);
-			});
+				//after singup, user should be redirected to confirmation
+				//page while they wait for code
+			.then(function() {
+				$location.path('/confirmation');
+			})
 	};
 
 		//user provides confirmation code to finalize signup

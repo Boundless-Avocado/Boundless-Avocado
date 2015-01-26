@@ -49,6 +49,22 @@ angular.module('boundless', [
 	};
 
 }])
+	
+.factory('AttachTokens', function($window) {
+		//here we attach tokens issued by server in order to create sessions. 
+		//generic for now, need to update url once server is up
+	var attach = {
+		request: function(object) {
+			var jwt = $window.localStorage.getItem('our url');
+			if (jwt) {
+				object.headers['x-access-token'] = jwt;
+			}
+			object.headers['Allow-Control-Allow-Origin'] = '*';
+			return object;
+		}
+	};
+	return attach;
+})
 
 .run(function ($rootScope, $location) {
 	console.log('run');

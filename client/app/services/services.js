@@ -13,7 +13,7 @@ angular.module('boundless.services', [])
 		})
 	};
 
-	var makeGroup = function(data) {
+	var createGroup = function(data) {
 		return $http({
 			method: 'POST',
 			url: '/api/groups',
@@ -27,8 +27,12 @@ angular.module('boundless.services', [])
 	};
 })
 
-	//services to authenticate users
 .factory('Auth', function($http, $location, $window){ 
+	// services for authentication. On authentication, server will return a JWT from the server
+	// that JWT is then stored in localStorage as 'com.shortly'
+	// after you signin/signup open devtools, click resources,
+	// then localStorage and you'll see your token from the server
+
 	var signin = function(user) {
 		return $http({
 				method: 'POST',
@@ -67,17 +71,19 @@ angular.module('boundless.services', [])
 	var signout = function() {
 
 	};
-
+		//checks token to check if user's session is still valid
 	var isAuth = function() {
 
 	};
 
 	return {
 		signin: signin,
-		singup: signup,
+		signup: signup,
 		isAuth: isAuth,
 		signout: signout,
-		confirm : confirm
+		confirm : confirm,
+		createGroup: createGroup,
+		getGroups: getGroups
 	};
 });
 

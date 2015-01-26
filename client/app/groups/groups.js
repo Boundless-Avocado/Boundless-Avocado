@@ -8,13 +8,13 @@ angular.module('boundless.groups', [])
 	};
 
 	//uses 
-	// $scope.getGroups = function() {
-	// 	Groups.getAll()
-	// 	.then(function (groups) {
-	// 		console.log(groups);
-	// 		$scope.data = groups;
-	// 	})
-	// };
+	$scope.getGroups = function() {
+		Groups.getAll()
+		.then(function (groups) {
+			console.log(groups);
+			$scope.data = groups;
+		})
+	};
 
 	// $scope.getGroups();
 
