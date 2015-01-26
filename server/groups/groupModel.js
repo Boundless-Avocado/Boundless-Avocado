@@ -1,10 +1,10 @@
-var sequelize = require('../db/index.js');
-var Users = require('./users/userModel.js');
+var db = require('../db/index.js');
+var Sequelize = require('sequelize');
 
-var Groups = sequelize.define('Groups', {
-  name: Sequelize.STRING
+var Groups = db.define('Groups', {
+  name: {type: Sequelize.STRING, unique: true}
 });
 
-Groups.belongsToMany(Users, {through: 'Memberships'});
+Groups.sync();
 
-exports.Groups = Groups;
+module.exports = Groups;

@@ -1,8 +1,8 @@
 var Sequelize = require('sequelize');
 
-var sequelize = new Sequelize('avocados', 'root', '', {dialect: 'mysql'});
+var db = new Sequelize('avocado', 'root', '', {dialect: 'mysql'});
 
-sequelize.define('Memberships', {}).sync();
+// // TESTS:
 
 // exports.groupBuilder({name: 'frisbee2'});
 // exports.groupBuilder({name: 'frisbee3'});
@@ -15,4 +15,4 @@ sequelize.define('Memberships', {}).sync();
 
 // exports.addToGroup('frisbee4','michael');
 
-exports = sequelize;
+module.exports = db;
