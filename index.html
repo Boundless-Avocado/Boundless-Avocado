@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html ng-app='boundless'>
+	<head>
+		<title>Boundless</title>
+		<link rel='stylesheet' type='text/css' href='client/styles/stylesheet.css' />
+		<link href="client/dist/dist/css/bootstrap.min.css" rel="stylesheet">
+		<link href="client/styles/stylesheet.css" rel="stylesheet">
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<link rel="icon" href="../../favicon.ico">
+
+		<title>GUACAMOLE!</title>
+		
+		<!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+		<!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
+		<script src="client/assets/ie-emulation-modes-warning.js"></script>
+		<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+
+		<!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		  <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+		  <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+		<![endif]-->
+	</head>
+	<body>
+		<!-- nav bar. controller is BoundlessController  -->
+		<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller='BoundlessController'>
+		  <div class="container">
+		    <div class="navbar-header">
+		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+		        <span class="sr-only">Toggle navigation</span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		        <span class="icon-bar"></span>
+		      </button>
+		      <a class="navbar-brand" href="#">BOUNDLESS AVOCADO</a>
+		    </div>
+		    
+		    <!-- collapsed navbar if screen size is too narrow -->
+		    <div id="navbar" class="navbar-collapse collapse">
+		      <form class="navbar-form navbar-right">
+		        <!-- <div class="form-group">
+		          <input type="text" placeholder="Email" class="form-control">
+		        </div>
+		        <div class="form-group">
+		          <input type="password" placeholder="Password" class="form-control">
+		        </div> -->
+		        <button type="submit" ng-click=go('/signin') class="btn btn-success">Sign in</button>
+		        <button type="submit" ng-click=go('/signup') class="btn btn-success">Sign up</button>
+		        <button type="submit" ng-click=go('/groups') class="btn btn-success">Groups</button>
+		      </form>
+		    </div><!--/.navbar-collapse -->
+		  </div>
+		</nav>
+		
+
+		<!-- Where Angular will render different html -->
+			<div class="container" ui-view>
+
+
+				  <!-- Example row of columns, just dummy data for layout -->
+				  <div class="row">
+				    <div class="col-md-4">
+				      <h2>Heading</h2>
+				      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+				      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+				    </div>
+				    <div class="col-md-4">
+				      <h2>Heading</h2>
+				      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
+				      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+				   </div>
+				   <div class="col-md-4">
+				      <h2>Heading</h2>
+				      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+				      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+				    </div>
+				    <div class="col-md-4">
+				      <h2>Heading</h2>
+				      <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p>
+				      <p><a class="btn btn-default" href="#" role="button">View details &raquo;</a></p>
+				    </div>
+				  </div>
+
+				  <hr>
+
+				  <footer>
+				    <p>&copy; Boundless Avocado 2015</p>
+				  </footer>
+
+				</div> <!-- /container -->
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="client/dist/dist/js/bootstrap.min.js"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+		<script src="client/assets/ie10-viewport-bug-workaround.js"></script>
+
+		<script src='client/app/auth/auth.js'></script>
+		<script src='client/app/groups/groups.js'></script>
+		<script src='client/app/services/services.js'></script>
+		<script src='client/app.js'></script>
+		<script src="client/lib/angular-ui-router/release/angular-ui-router.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="client/dist/dist/js/bootstrap.min.js"></script>
+	</body>
+	
+</html>
+
