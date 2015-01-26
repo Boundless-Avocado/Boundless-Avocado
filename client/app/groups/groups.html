@@ -1,7 +1,14 @@
 <!-- placeholder for testing the rendering of groups.html -->
 <div class="col-md-4">
-  <h2>{{ data.groupName }}</h2>
+  <h2>{{ data.groupNameTest }}</h2>
   <p>{{ data.testData }}</p>
   <p><a class="btn btn-default" ng-click='joinGroup()' href="#" role="button">Join Group &raquo;</a></p>
+  
+  <form name="createGroupForm" ng-submit='createGroup()'>
+  	New Group Name
+    <input type='text' ng-model='data.newGroupName'>
+  	<button class='btn btn-default'>Create Group</button>
+  </form>
+
 </div>
 

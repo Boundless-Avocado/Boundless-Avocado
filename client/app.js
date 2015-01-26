@@ -8,7 +8,7 @@ angular.module('boundless', [
 	//using ui-router to route client
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 		
-		//reroutes to '/' as 
+		//reroutes to '/' as default
 	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
@@ -44,6 +44,7 @@ angular.module('boundless', [
 .controller('BoundlessController', ['$scope','$location','$stateParams', function($scope, $location, $stateParams){
 	
 	$scope.go = function ( path ) {
+		console.log('GO!');
 		console.log('redirected');
   $location.path( path );
 	};

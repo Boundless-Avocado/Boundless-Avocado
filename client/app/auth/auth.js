@@ -23,21 +23,25 @@ angular.module('boundless.auth', [])
 				//after singup, user should be redirected to confirmation
 				//page while they wait for code
 			.then(function() {
-				$location.path('/confirmation');
-			})
-	};
-
-		//user provides confirmation code to finalize signup
-	$scope.confirm = function() {
-		Auth.confirm($scope.code) 
-			.then(function(token) {
-					//this is where we will will set a token/cookie/jwt
 				$window.localStorage.setItem('our url here', token);
+				$location.path('/groups');
 			})
 			.catch(function(error) {
 				console.log(error);
 			});
 	};
+
+		//user provides confirmation code to finalize signup
+	// $scope.confirm = function() {
+	// 	Auth.confirm($scope.code) 
+	// 		.then(function(token) {
+	// 				//this is where we will will set a token/cookie/jwt
+	// 			$window.localStorage.setItem('our url here', token);
+	// 		})
+	// 		.catch(function(error) {
+	// 			console.log(error);
+	// 		});
+	// };
 
 
 });

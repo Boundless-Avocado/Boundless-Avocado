@@ -1,7 +1,8 @@
 angular.module('boundless.services', [])
 
 	//services to fetch & make groups
-.factory('Groups', function ($http) {
+.factory('Groups', function($http, $location, $window) {
+
 
 	var getGroups = function() {
 		return $http({
@@ -13,17 +14,26 @@ angular.module('boundless.services', [])
 		})
 	};
 
-	var createGroup = function(data) {
+	var createGroup = function(newGroupName) {
+		console.log('new group name is: ' + newGroupName);
 		return $http({
 			method: 'POST',
 			url: '/api/groups',
-			data: data
+			data: newGroupName
 		})
+		.then(function(resp) {
+			return resp.data;
+		})
+	};
+
+	var joinGroup = function() {
+		console.log('Joined');
 	};
 
 	return {
 		getGroups: getGroups,
-		makeGroup: makeGroup
+		createGroup: createGroup ,
+		joinGroup: joinGroup
 	};
 })
 
@@ -34,6 +44,7 @@ angular.module('boundless.services', [])
 	// then localStorage and you'll see your token from the server
 
 	var signin = function(user) {
+		console.log(user);
 		return $http({
 				method: 'POST',
 				url: '/api/users/siginin',
@@ -82,8 +93,6 @@ angular.module('boundless.services', [])
 		isAuth: isAuth,
 		signout: signout,
 		confirm : confirm,
-		createGroup: createGroup,
-		getGroups: getGroups
 	};
 });
 
