@@ -3,29 +3,40 @@ angular.module('boundless.groups', [])
 .controller('GroupsController', function($scope, Groups) {
 	//hold data here after quering db
 	$scope.data = {
-		groupNameTest: 'Test Group Name',
-		testData: 'test data here',
-		groups: {}
+		//this is just dummy data to get the ng-repeat working correctly
+		groups: [{groupName: 'Basketball'}, {groupName: 'Tennis'}, {groupName: 'Tap Dancing'}]
 	};
 
-	$scope.joinGroup = function() {
-		Groups.joinGroup()
+	$scope.joinGroup = function(data) {
+		console.log(data.groupName);
+		Groups.joinGroup(data)
+			.then(function() {
+				$location.path('/groups');
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
 	};
 
 	 
 	$scope.getGroups = function() {
 		Groups.getGroup()
-		.then(function (groupData) {
-			console.log(groupData);
-			$scope.data.groups = groupData;
+			//server sends back groups which should be an array containing objects
+		.then(function (groups) {
+			console.log(groups);
+			$scope.data.groups = groups.data;
 		})
 	};
 
 	$scope.createGroup = function() {
-		Groups.createGroup($scope.data.newGroupName)
-		.then(function(groupData) {
-			console.log(groupData);
+		$scope.newGroupName = {};
+		Groups.createGroup($scope.newGroupName)
+			.then(function() {
+			$location.path('/groups');
 		})
+			.catch(function(error) {
+				console.log(error);
+			});
 	};
 
 });	

@@ -14,20 +14,29 @@ angular.module('boundless.services', [])
 		})
 	};
 
-	var createGroup = function(newGroupName) {
-		console.log('new group name is: ' + newGroupName);
+	var createGroup = function(groupName) {
+		console.log('new group name is: ' + groupName);
 		return $http({
 			method: 'POST',
 			url: '/api/groups',
-			data: newGroupName
+			data: groupName
 		})
 		.then(function(resp) {
 			return resp.data;
 		})
 	};
-
-	var joinGroup = function() {
-		console.log('Joined');
+		//new entry should added to the memberships join table. 
+		// 'data' is an object containing the groups information
+	var joinGroup = function(data) {
+		console.log('Joined: ' + data.groupName);
+		return $http({
+			method: 'POST',
+			url: '/api/groups',
+			data: data
+		})
+		.then(function(resp) {
+			return resp.data;
+		})
 	};
 
 	return {
