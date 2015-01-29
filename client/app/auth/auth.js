@@ -36,7 +36,7 @@ angular.module('boundless.auth', [])
 	// 	Auth.confirm($scope.code) 
 	// 		.then(function(token) {
 	// 				//this is where we will will set a token/cookie/jwt
-	// 			$window.localStorage.setItem('our url here', token);
+	// 			$window.localStorage.setItem('boundless-avocado', token);
 	// 		})
 	// 		.catch(function(error) {
 	// 			console.log(error);

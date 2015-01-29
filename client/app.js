@@ -56,7 +56,7 @@ angular.module('boundless', [
 		//generic for now, need to update url once server is up
 	var attach = {
 		request: function(object) {
-			var jwt = $window.localStorage.getItem('our url');
+			var jwt = $window.localStorage.getItem('boundless-avocado');
 			if (jwt) {
 				object.headers['x-access-token'] = jwt;
 			}
