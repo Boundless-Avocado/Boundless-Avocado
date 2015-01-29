@@ -9,7 +9,7 @@ angular.module('boundless.auth', [])
 		Auth.signin($scope.user)
 			.then(function(token) {
 					//this is where we will will set a token/cookie/jwt
-				$window.localStorage.setItem('our url here', token);
+				$window.localStorage.setItem('boundless-avocado', token);
 				$location.path('/groups');
 			})
 			.catch(function(error) {
@@ -23,7 +23,7 @@ angular.module('boundless.auth', [])
 				//after singup, user should be redirected to confirmation
 				//page while they wait for code
 			.then(function() {
-				$window.localStorage.setItem('our url here', token);
+				$window.localStorage.setItem('boundless-avocado', token);
 				$location.path('/groups');
 			})
 			.catch(function(error) {
