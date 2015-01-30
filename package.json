@@ -24,11 +24,12 @@
     "jwt-simple": "^0.2.0",
     "morgan": "^1.1.1",
     "mysql": "^2.5.4",
+    "node-gyp": "^1.0.2",
     "passport": "^0.2.0",
     "passport-local": "^1.0.0",
     "request": "^2.36.0",
-    "twilio": "^1.10.0",
     "sendgrid": "1.5.0",
-    "sequelize": "^2.0.0-rc8"
+    "sequelize": "^2.0.0-rc8",
+    "twilio": "^1.10.0"
   }
 }
