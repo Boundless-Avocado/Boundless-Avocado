@@ -1,26 +1,30 @@
-var request = require('request'),
-    Q       = require('q'),
-    rValidUrl = /^(?!mailto:)(?:(?:https?|ftp):\/\/)?(?:\S+(?::\S*)?@)?(?:(?:(?:[1-9]\d?|1\d\d|2[01]\d|22[0-3])(?:\.(?:1?\d{1,2}|2[0-4]\d|25[0-5])){2}(?:\.(?:[0-9]\d?|1\d\d|2[0-4]\d|25[0-4]))|(?:(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)(?:\.(?:[a-z\u00a1-\uffff0-9]+-?)*[a-z\u00a1-\uffff0-9]+)*(?:\.(?:[a-z\u00a1-\uffff]{2,})))|localhost)(?::\d{2,5})?(?:\/[^\s]*)?$/i;
+//twilio
+var keys = require('../keys');
 
-
-module.exports = {
-  getUrlTitle: function(url) {
-    var defer = Q.defer();
-    request(url, function(err, res, html) {
-      if (err) {
-        defer.reject(err);
-      } else {
-        var tag = /<title>(.*)<\/title>/;
-        var match = html.match(tag);
-        var title = match ? match[1] : url;
-        defer.resolve(title);
-      }
-    });
-    return defer.promise;
-  },
-
-  isValidUrl: function(url) {
-    return url.match(rValidUrl);
-  }
+var client = require('twilio')(keys.accountSid, keys.authToken);
+ 
+exports.twilio = function(){
+  client.messages.create({
+      body: "Twilio is my bitch",
+      to: "+14157062795",
+      from: "+14158149655"
+  }, function(err, message) {
+      process.stdout.write(message.sid);
+  });
 };
+
+//sendgrid
+
+var sendgrid = require("sendgrid")(keys.api_user, keys.api_key);
+
+exports.sendgrid = function(){
+  var email = new sendgrid.Email();
+  email.addTo("mdelucco@gmail.com");
+  email.setFrom("david@dsernst.com");
+  email.setSubject("Sending with SendGrid is Fun");
+  email.setHtml("and easy to do anywhere, even with Node.js");
+  sendgrid.send(email);
+};
+
+
 
