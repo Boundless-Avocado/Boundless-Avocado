@@ -15,31 +15,31 @@ angular.module('boundless', [
 			//if at /groups, render groups.html & use GroupsController for the view's controller
 
 		.state('groups', {
-			templateUrl: 'client/app/groups/groups.html',
+			templateUrl: 'app/groups/groups.html',
 			controller: 'GroupsController',
 			url: '/groups'
 		})
 
 		.state('signin', {
-			templateUrl: 'client/app/auth/signin.html',
+			templateUrl: 'app/auth/signin.html',
 			controller: 'AuthController',
 			url: '/signin'
 		})
 
 		.state('signup', {
-			templateUrl: 'client/app/auth/signup.html',
+			templateUrl: 'app/auth/signup.html',
 			controller: 'AuthController',
 			url: '/signup'
 		})
 
 		.state('confirmation', {
-			templateUrl: 'client/app/auth/confirmation.html',
+			templateUrl: 'app/auth/confirmation.html',
 			controller: 'AuthController',
 			url: '/confirmation'
 		})
 
 		.state('newgroup', {
-			templateUrl: 'client/app/groups/newgroup.html',
+			templateUrl: 'app/groups/newgroup.html',
 			controller: 'GroupsController',
 			url: '/newgroup'
 		})
