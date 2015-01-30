@@ -7,9 +7,9 @@ angular.module('boundless.groups', [])
 		groups: [{groupName: 'Basketball'}, {groupName: 'Tennis'}, {groupName: 'Tap Dancing'}]
 	};
 
-	$scope.joinGroup = function(data) {
-		console.log(data.groupName);
-		Groups.joinGroup(data)
+	$scope.joinGroup = function(groupName) {
+		console.log(groupName.groupName);
+		Groups.joinGroup(groupName)
 			.then(function() {
 				$location.path('/groups');
 			})
@@ -20,17 +20,17 @@ angular.module('boundless.groups', [])
 
 	 
 	$scope.getGroups = function() {
-		Groups.getGroup()
+		Groups.getGroups()
 			//server sends back groups which should be an array containing objects
-		.then(function (groups) {
-			console.log(groups);
-			$scope.data.groups = groups.data;
+		.then(function (data) {
+			console.log(data);
+			$scope.data.groups = data.data;
 		})
 	};
 
 	$scope.createGroup = function() {
-		$scope.newGroupName = {};
-		Groups.createGroup($scope.newGroupName)
+		console.log($scope.data.newGroup);
+		Groups.createGroup($scope.newGroup)
 			.then(function() {
 			$location.path('/groups');
 		})

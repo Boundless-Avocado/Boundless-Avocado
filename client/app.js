@@ -9,11 +9,16 @@ angular.module('boundless', [
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 		
 		//reroutes to '/' as default
-	$urlRouterProvider.otherwise('/');
+	$urlRouterProvider.otherwise('/client');
 
 	$stateProvider
 			//if at /groups, render groups.html & use GroupsController for the view's controller
-			.state('groups', {
+		.state('index', {
+			templateUrl: 'client/index.html',
+			url: ''
+		})
+
+		.state('groups', {
 			templateUrl: 'client/app/groups/groups.html',
 			controller: 'GroupsController',
 			url: '/groups'
@@ -37,7 +42,12 @@ angular.module('boundless', [
 			url: '/confirmation'
 		})
 
-		
+		.state('newgroup', {
+			templateUrl: 'client/app/groups/newgroup.html',
+			controller: 'GroupsController',
+			url: '/newgroup'
+		})
+
 })
 
 	//dont know what to use controller for here
@@ -46,7 +56,7 @@ angular.module('boundless', [
 	$scope.go = function ( path ) {
 		console.log('GO!');
 		console.log('redirected');
-  $location.path( path );
+  		$location.path( path );
 	};
 
 }])

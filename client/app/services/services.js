@@ -5,6 +5,7 @@ angular.module('boundless.services', [])
 
 
 	var getGroups = function() {
+		console.log('getting groups data!');
 		return $http({
 			method: 'GET',
 			url: '/api/groups'
@@ -14,12 +15,12 @@ angular.module('boundless.services', [])
 		})
 	};
 
-	var createGroup = function(groupName) {
-		console.log('new group name is: ' + groupName);
+	var createGroup = function(newGroup) {
+		console.log(newGroup);
 		return $http({
 			method: 'POST',
 			url: '/api/groups',
-			data: groupName
+			data: newGroup
 		})
 		.then(function(resp) {
 			return resp.data;
