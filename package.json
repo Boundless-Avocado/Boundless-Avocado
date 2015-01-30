@@ -2,7 +2,7 @@
   "name": "boundless-avacado",
   "version": "0.0.1",
   "description": "Meetups on the fly",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "karma start --browsers PhantomJS"
   },
