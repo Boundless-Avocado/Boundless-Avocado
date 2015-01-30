@@ -1,4 +1,7 @@
 var groupController = require('./groupController.js');
+var app = require('../server');
+var utils = require('../config/utils');
+
 
 module.exports = function (app) {
   // app is injected from middlware.js
