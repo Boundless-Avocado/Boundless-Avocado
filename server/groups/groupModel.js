@@ -1,10 +1,10 @@
 var db = require('../db/index.js');
 var Sequelize = require('sequelize');
 
-var Groups = db.define('Groups', {
+var Group = db.define('Groups', {
   name: {type: Sequelize.STRING, unique: true}
 });
 
-Groups.sync();
+Group.sync();
 
-module.exports = Groups;
+module.exports = Group;

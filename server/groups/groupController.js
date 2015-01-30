@@ -3,7 +3,7 @@ require('../db/relationshipModel.js'); // sets up many-to-many relationship
 
 module.exports = {
   findGroup: function (req, res, next, groupName) {
-    Groups.findOne({where: {name: groupName}})
+    Group.findOne({where: {name: groupName}})
     .success(function (group) {
       if (!group) {
         console.log('user is searching for "' + groupName + '", but not in database');
@@ -15,8 +15,9 @@ module.exports = {
   },
 
   create: function (req, res) {
-    Groups.sync().success(function () {
-      var group = Groups.build(req.body);
+    Group.sync().success(function () {
+      console.log(req.body)
+      var group = Group.build(req.body);
       group.save()
       .success(function (result) {
         res.end('Success:', result);
@@ -25,16 +26,17 @@ module.exports = {
   },
 
   browse: function (req, res) {
-    Groups.find()
+    Group.find()
     .success(function (groups) {
       res.end(groups);
     });
   },
 
   join: function (req, res) {
-    Users.findOne({where: {username: req.body.username}})
+    // TODO: security concern that username is coming from POST request. Easy to forge
+    User.findOne({where: {username: req.body.username}})
     .success(function (user) {
-      user.addGroups(req.groupId)
+      user.addGroup(req.groupId)
       .success(function (result) {
         res.end('Success:', result);
       })

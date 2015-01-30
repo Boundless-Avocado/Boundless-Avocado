@@ -1,10 +1,10 @@
 var db = require('../db/index.js');
-var Groups = require('../groups/groupModel.js');
-var Users = require('../users/userModel.js');
+var Group = require('../groups/groupModel.js');
+var User = require('../users/userModel.js');
 
 var Memberships = db.define('Memberships', {});
 
-Users.belongsToMany(Groups, {through: 'Memberships'});
-Groups.belongsToMany(Users, {through: 'Memberships'});
+User.belongsToMany(Group, {through: 'Memberships'});
+Group.belongsToMany(User, {through: 'Memberships'});
 
 Memberships.sync();
