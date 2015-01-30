@@ -2,7 +2,7 @@
   "name": "Boundless-Avocado",
   "main": "index.js",
   "version": "0.0.0",
-  "homepage": "https://github.com/p3tuh/Boundless-Avocado",
+  "homepage": "https://github.com/Boundless-Avocado/Boundless-Avocado",
   "ignore": [
     "**/.*",
     "node_modules",

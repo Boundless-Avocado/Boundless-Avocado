@@ -102,7 +102,7 @@ angular.module('boundless.services', [])
 		signup: signup,
 		isAuth: isAuth,
 		signout: signout,
-		confirm : confirm,
+		confirm : confirm
 	};
 });
 

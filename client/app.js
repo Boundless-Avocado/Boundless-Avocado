@@ -9,14 +9,10 @@ angular.module('boundless', [
 .config(function($stateProvider, $urlRouterProvider, $httpProvider) {
 		
 		//reroutes to '/' as default
-	$urlRouterProvider.otherwise('/client');
+	$urlRouterProvider.otherwise('/');
 
 	$stateProvider
 			//if at /groups, render groups.html & use GroupsController for the view's controller
-		.state('index', {
-			templateUrl: 'client/index.html',
-			url: ''
-		})
 
 		.state('groups', {
 			templateUrl: 'client/app/groups/groups.html',
@@ -81,7 +77,7 @@ angular.module('boundless', [
 	console.log('run');
 	$rootScope.$on('$routeChangeStart', function (evt, next, current) {
 	    // if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
-	      $location.path('/client/index.html');
+	      $location.path('/');
 	      console.log('run');
 	    // }
 	  });
