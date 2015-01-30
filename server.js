@@ -1,5 +1,5 @@
 var express = require('express');
-var utils = require('./config/utils')
+var utils = require('./server/config/utils')
 
 var app = express();
 
@@ -10,7 +10,7 @@ app.listen(port);
 console.log('Server now listening on port ' + port);
 
 // configure our server with all the middleware and and routing
-require('./config/middleware.js')(app, express);
+require('./server/config/middleware.js')(app, express);
 
 // export our app for testing and flexibility, required by index.js
 module.exports = app;
