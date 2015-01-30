@@ -8,7 +8,6 @@ module.exports = function (app) {
   app.post('/', groupController.create);
   app.get('/', groupController.browse);
 
-  //TODO:
   app.post('/:group', groupController.join)
   app.post('/:group/pings/', groupController.ping)
 };
