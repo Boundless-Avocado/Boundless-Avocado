@@ -2,7 +2,7 @@
   "name": "boundless-avacado",
   "version": "0.0.1",
   "description": "Meetups on the fly",
-  "main": "index.js",
+  "main": "server/server.js",
   "scripts": {
     "test": "karma start --browsers PhantomJS"
   },
@@ -46,6 +46,8 @@
     "passport-local": "^1.0.0",
     "q": "^1.0.1",
     "request": "^2.36.0",
+    "twilio": "^1.10.0",
+    "sendgrid": "1.5.0",
     "sequelize": "^2.0.0-rc8"
   }
 }

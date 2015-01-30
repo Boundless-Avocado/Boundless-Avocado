@@ -1,6 +1,6 @@
 var Sequelize = require('sequelize');
 
-var db = new Sequelize('avocado', 'root', '', {dialect: 'mysql'});
+var db = new Sequelize('avocados', 'avocados', 'Boundless1!', {dialect: 'mysql'});
 
 // // TESTS:
 
@@ -16,3 +16,5 @@ var db = new Sequelize('avocado', 'root', '', {dialect: 'mysql'});
 // exports.addToGroup('frisbee4','michael');
 
 module.exports = db;
+
+//avocadoAy4XOeCXP
