@@ -1,13 +1,23 @@
-<div class="container">
+<!-- <div class="container">
   <div class='row'>
   	  <h1>create new group</h1>
-  		  <form name="signinForm" ng-submit='signin()'>
+  		  <form name="newgroup" ng-submit='createGroup()'>
   		  	Username
-  		    <input type='text'ng-model='user.username'>
+  		    <input type='text'ng-model='groups.name'>
   		    Password
   		    <input type="password" ng-model='user.password'>
   		    <button>signin</button>
   		  </form>
   	</div>
   
+</div> -->
+<div class="container">
+  <div class="col-md-4">
+    <form name="createGroupForm" ng-submit='createGroup()'>
+      New Group Name
+      <input type='text' ng-model='data.newGroup'>
+      <button class='btn btn-default'>Create Group</button>
+    </form>
+  </div>
+
 </div>

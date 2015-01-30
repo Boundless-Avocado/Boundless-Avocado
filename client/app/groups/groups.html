@@ -1,7 +1,11 @@
 <!-- placeholder for testing the rendering of groups.html -->
-<div class="col-md-4">
-  <h2>{{ data.groupName }}</h2>
-  <p>{{ data.testData }}</p>
-  <p><a class="btn btn-default" ng-click='joinGroup()' href="#" role="button">Join Group &raquo;</a></p>
+<div ng-repeat="groups in data.groups"> 
+	<div class="col-md-4">
+	  <h2>{{ groups.groupName }}</h2>
+	  <p>{{  }}</p>
+	  	<!-- this button passes this groups information as an object to joinGroup-->
+	  <p><a class="btn btn-default" ng-click='joinGroup(groups)' href="#" role="button">Join Group &raquo;</a></p>
+	  
+	</div>
 </div>
 
