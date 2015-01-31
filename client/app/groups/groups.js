@@ -8,11 +8,14 @@ angular.module('boundless.groups', [])
 	};
 
 	$scope.joinGroup = function(groupName) {
-		console.log('data sent: ' + groupName.groupName);
-			//should be the jwt stored in local storage
-		console.log($window.localStorage.getItem('boundless-avocado'));
+		var username = $window.localStorage.getItem('username');
+		var groupName =groupName.groupName;
+		var data = {
+			username: username, 
+			groupName: groupName
+		};
 
-		Groups.joinGroup(groupName)
+		Groups.joinGroup(data)
 			.then(function() {
 				$location.path('/groups');
 			})
@@ -32,9 +35,15 @@ angular.module('boundless.groups', [])
 	};
 		//passes new group name
 	$scope.createGroup = function() {
-		console.log('groups.js $scope.data: ' + $scope.data);
-		console.log('$scope.data.newGroup ' + $scope.data.newGroup);
-		Groups.createGroup($scope.data)
+		var groupName = $scope.data.newGroup;
+		var username = $window.localStorage.getItem('username');
+		var data = {
+			username: username, 
+			groupName: groupName
+		};
+		// console.log('groups.js $scope.data: ' + $scope.data);
+		// console.log('$scope.data.newGroup ' + $scope.data.newGroup);
+		Groups.createGroup(data)
 			.then(function() {
 			$location.path('/groups');
 		})

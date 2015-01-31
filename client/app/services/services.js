@@ -16,7 +16,7 @@ angular.module('boundless.services', [])
 	};
 
 	var createGroup = function(newGroup) {
-		console.log('services received data: ' + newGroup.newGroup);
+		console.log(newGroup);
 		return $http({
 			method: 'POST',
 			url: '/api/groups',
@@ -29,7 +29,8 @@ angular.module('boundless.services', [])
 		//new entry should added to the memberships join table. 
 		// 'data' is an object containing the groups information
 	var joinGroup = function(data) {
-		console.log('Joined: ' + data.groupName);
+		// console.log('Joined: ' + data.groupName);
+		console.log(data);
 		return $http({
 			method: 'POST',
 			url: '/api/groups',
