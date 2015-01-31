@@ -1,6 +1,6 @@
 angular.module('boundless.groups', [])
 
-.controller('GroupsController', function($scope, Groups) {
+.controller('GroupsController', function($scope, $window, Groups) {
 	//hold data here after quering db
 	$scope.data = {
 		//this is just dummy data to get the ng-repeat working correctly
@@ -9,6 +9,9 @@ angular.module('boundless.groups', [])
 
 	$scope.joinGroup = function(groupName) {
 		console.log('data sent: ' + groupName.groupName);
+			//should be the jwt stored in local storage
+		console.log($window.localStorage.getItem('boundless-avocado'));
+
 		Groups.joinGroup(groupName)
 			.then(function() {
 				$location.path('/groups');
@@ -33,7 +36,7 @@ angular.module('boundless.groups', [])
 		console.log('$scope.data.newGroup ' + $scope.data.newGroup);
 		Groups.createGroup($scope.data)
 			.then(function() {
-			$location.path('/');
+			$location.path('/groups');
 		})
 			.catch(function(error) {
 				console.log(error);

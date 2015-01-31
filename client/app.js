@@ -44,11 +44,14 @@ angular.module('boundless', [
 			url: '/newgroup'
 		})
 
+		// We add our $httpInterceptor into the array
+		// of interceptors. Think of it like middleware for your ajax calls
+		$httpProvider.interceptors.push('AttachTokens');
 })
 
 	//dont know what to use controller for here
 .controller('BoundlessController', ['$scope','$location','$stateParams', function($scope, $location, $stateParams){
-	
+	// console.log($stateParams);
 	$scope.go = function ( path ) {
 		console.log('GO!');
 		console.log('redirected');

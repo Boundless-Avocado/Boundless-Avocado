@@ -73,7 +73,7 @@ angular.module('boundless.services', [])
 			data: user
 		})
 		.then(function(resp) {
-			return resp.data;
+			return resp.data.token;
 		})
 	};
 
@@ -90,11 +90,12 @@ angular.module('boundless.services', [])
 	}
 
 	var signout = function() {
-
+		$window.localStorage.removeItem('boundless-avocado');
+		$location.path('/signin');
 	};
 		//checks token to check if user's session is still valid
 	var isAuth = function() {
-
+		return !!$window.localStorage.getItem('boundless-avocado');
 	};
 
 	return {
