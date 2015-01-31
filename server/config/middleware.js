@@ -17,7 +17,7 @@ module.exports = function (app, express) {
 
   app.use('/api/users', userRouter); // use user router for all user request
   app.use('/api/groups', groupRouter); // use group router for group request
-  app.use('/api/twilio', clientRouter); // use client router for all client request
+  app.use('/api/client', clientRouter); // use client router for all client request
 
 
   app.use(helpers.errorLogger);
@@ -26,6 +26,6 @@ module.exports = function (app, express) {
   // inject our routers into their respective route files
   require('../users/userRoutes.js')(userRouter);
   require('../groups/groupRoutes.js')(groupRouter);
-  require('../twilio/twilioRoutes.js')(clientRouter);
+  require('../client/clientRoutes.js')(clientRouter);
 
 };
