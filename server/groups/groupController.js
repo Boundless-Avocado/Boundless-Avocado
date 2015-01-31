@@ -14,20 +14,24 @@ module.exports = {
     });
   },
 
-  create: function (req, res) {
-    Group.sync().then(function () {
-      var group = Group.build(req.body);
-      group.save()
-      .then(function (result) {
-        res.end(JSON.stringify(result));
-      })
-    });
-  },
-
   browse: function (req, res) {
     Group.findAll()
     .then(function (groups) {
       res.end(JSON.stringify(groups));
+    });
+  },
+
+  create: function (req, res) {
+    Group.build(req.body).save()
+    .then(function (result) {
+      res.end(JSON.stringify(result));
+    });
+  },
+
+  members: function (req, res) {
+    req.group.getUsers()
+    .then(function (users) {
+      res.end(JSON.stringify(users));
     });
   },
 
@@ -45,11 +49,8 @@ module.exports = {
     });
   },
 
-  members: function (req, res) {
-    req.group.getUsers()
-    .then(function (users) {
-      res.end(JSON.stringify(users));
-    });
+  history: function (req, res) {
+
   },
 
   ping: function (req, res) {
