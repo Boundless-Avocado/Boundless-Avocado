@@ -1,4 +1,4 @@
-var Users = require('./userModel.js'),
+var User = require('./userModel.js'),
     Q    = require('q'),
     jwt  = require('jwt-simple');
 
@@ -31,13 +31,13 @@ module.exports = {
 
   signup: function (req, res, next) {
     // check to see if user already exists
-    Users.findOne({username: req.body.username})
+    User.findOne({username: req.body.username})
       .then(function(user) {
         if (user) {
-          next(new Error('User already exist!'));
+          next(new Error('User already exists'));
         } else {
           // make a new user if not one
-          Users.sync().then(function () {
+          User.sync().then(function () {
             var user = Users.build(req.body);
             user.save();
           });
