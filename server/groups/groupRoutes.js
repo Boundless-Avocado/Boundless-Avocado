@@ -1,4 +1,6 @@
 var groupController = require('./groupController.js');
+var utils = require('../config/utils');
+
 
 module.exports = function (app) {
   // app is injected from middlware.js
@@ -8,7 +10,6 @@ module.exports = function (app) {
   app.post('/', groupController.create);
   app.get('/', groupController.browse);
 
-  //TODO:
   app.post('/:group', groupController.join)
   app.post('/:group/pings/', groupController.ping)
 };

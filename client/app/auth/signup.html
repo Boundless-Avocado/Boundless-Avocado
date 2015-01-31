@@ -1,0 +1,20 @@
+<div class='container'>
+	<div class='row'>
+	  <h1>Sign Up</h1>
+		  <form name="signupForm" ng-submit='signup()'>
+		  	Username
+		    <input type='text'ng-model='user.username' required>
+		    Email
+		    <input type='email' ng-model='user.email' required>
+		    Phone:
+		    <input type='tel' ng-model='user.phone' required>
+		    <br>
+		    	<!-- radio buttons for users to choose how to receive confirmation code  -->
+		    <!-- <input type="radio" value="phone" ng-model='smsConfirmation'>Receive confirmation code via Text
+		    <br>
+		    <input type="radio" value="email" ng-model='emailConfirmation'>Receive confirmation code via email -->
+		    <button class='btn btn-default'>signup</button>
+		  </form>
+	</div>
+
+</div>
