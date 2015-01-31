@@ -33,7 +33,7 @@ angular.module('boundless.services', [])
 		console.log(data);
 		return $http({
 			method: 'POST',
-			url: '/api/groups',
+			url: '/api/' + data.groupName,
 			data: data
 		})
 		.then(function(resp) {
@@ -45,7 +45,7 @@ angular.module('boundless.services', [])
 		console.log(data);
 		return $http({
 			method: 'POST',
-			url: '/api/groups',
+			url: '/api/' + data.groupName + '/pings/',
 			data: data
 		})
 		.then(function(resp) {
@@ -104,12 +104,12 @@ angular.module('boundless.services', [])
 	}
 
 	var signout = function() {
-		$window.localStorage.removeItem('boundless-avocado');
-		$location.path('/signin');
+		// $window.localStorage.removeItem('boundless-avocado');
+		// $location.path('/signin');
 	};
 		//checks token to check if user's session is still valid
 	var isAuth = function() {
-		return !!$window.localStorage.getItem('boundless-avocado');
+		// return !!$window.localStorage.getItem('boundless-avocado');
 	};
 
 	return {
