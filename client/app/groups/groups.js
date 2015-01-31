@@ -33,20 +33,38 @@ angular.module('boundless.groups', [])
 				$scope.data.groups = data.data;
 		})
 	};
-		//passes new group name
+
 	$scope.createGroup = function() {
+		//pass groupName & username to create a new group
 		var groupName = $scope.data.newGroup;
 		var username = $window.localStorage.getItem('username');
 		var data = {
 			username: username, 
 			groupName: groupName
 		};
-		// console.log('groups.js $scope.data: ' + $scope.data);
-		// console.log('$scope.data.newGroup ' + $scope.data.newGroup);
+
 		Groups.createGroup(data)
 			.then(function() {
-			$location.path('/groups');
-		})
+				$location.path('/groups');
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
+	};
+
+	$scope.pingGroup = function(groupName) {
+		//pass groupName & username to ping the group
+		var groupName =groupName.groupName;
+		var username = $window.localStorage.getItem('username');
+		var data = {
+			username: username, 
+			groupName: groupName
+		};
+
+		Groups.pingGroup(data)
+			.then(function() {
+				$location.path('/groups');
+			})
 			.catch(function(error) {
 				console.log(error);
 			});

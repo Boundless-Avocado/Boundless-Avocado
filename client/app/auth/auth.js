@@ -6,8 +6,10 @@ angular.module('boundless.auth', [])
 
 		//at sign in, user is issued a token
 	$scope.signin = function() {
+			//storing username in local storage to retrieve later
 		$window.localStorage.setItem('username', $scope.user.username);
 		console.log('localStorage = ' + $window.localStorage.getItem('username'));
+		
 		Auth.signin($scope.user)
 			.then(function(token) {
 					//this is where we will will set a token/cookie/jwt
@@ -22,7 +24,9 @@ angular.module('boundless.auth', [])
 		//on signup, user is issued token
 	$scope.signup = function() {
 		console.log($scope.user);
+		//storing username in local storage to retrieve later
 		$window.localStorage.setItem('username', $scope.user.username);
+		
 		Auth.signup($scope.user) 
 				//after singup, user should be redirected to confirmation
 				//page while they wait for code

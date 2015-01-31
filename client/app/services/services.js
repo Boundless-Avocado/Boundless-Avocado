@@ -41,10 +41,23 @@ angular.module('boundless.services', [])
 		})
 	};
 
+	var pingGroup = function(data) {
+		console.log(data);
+		return $http({
+			method: 'POST',
+			url: '/api/groups',
+			data: data
+		})
+		.then(function(resp) {
+			return resp.data;
+		})
+	};
+
 	return {
 		getGroups: getGroups,
 		createGroup: createGroup,
-		joinGroup: joinGroup
+		joinGroup: joinGroup,
+		pingGroup: pingGroup
 	};
 })
 
