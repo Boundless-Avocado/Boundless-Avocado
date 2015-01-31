@@ -1,6 +1,8 @@
 var User = require('./userModel.js'),
     Q    = require('q'),
     jwt  = require('jwt-simple');
+   utils = require('../config/utils');
+
 
 module.exports = {
   signin: function (req, res, next) {

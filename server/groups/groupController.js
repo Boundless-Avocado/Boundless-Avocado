@@ -1,5 +1,7 @@
 var Group = require('./groupModel.js');
 require('../db/relationshipModel.js'); // sets up many-to-many relationship
+var utils = require('../config/utils');
+
 
 module.exports = {
   findGroup: function (req, res, next, groupName) {
