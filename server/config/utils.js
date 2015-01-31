@@ -1,7 +1,7 @@
 //twilio
-var keys = require('../keys');
+// var keys = require('../keys');
 
-var client = require('twilio')(keys.accountSid, keys.authToken);
+var client = require('twilio')(process.env.twilio_accountSid, process.env.twilio_authToken);
  
 exports.twilio = function(){
   client.messages.create({
@@ -15,7 +15,7 @@ exports.twilio = function(){
 
 //sendgrid
 
-var sendgrid = require("sendgrid")(keys.api_user, keys.api_key);
+var sendgrid = require("sendgrid")(process.env.sendgrid_api_user, process.env.sendgrid_api_key);
 
 exports.sendgrid = function(){
   var email = new sendgrid.Email();
