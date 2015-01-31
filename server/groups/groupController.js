@@ -8,7 +8,7 @@ module.exports = {
       if (!group) {
         console.log('user is searching for "' + groupName + '", but not in database');
       } else {
-        req.groupId = group.id;
+        req.group = group;
         next();
       }
     });
@@ -35,17 +35,30 @@ module.exports = {
     // TODO: security concern that username is coming from POST request. Easy to forge
     require('../users/userModel.js').findOne({where: {username: req.body.username}})
     .then(function (user) {
-      user.addGroup(req.groupId)
+      user.addGroup(req.group.id)
       .then(function (result) {
         res.end(JSON.stringify(result));
       })
-      .error(function (err) {
+      .catch(function (err) {
         console.log(err);
       });
     });
   },
 
-  ping: function (req, res) {
+  members: function (req, res) {
+    req.group.getUsers()
+    .then(function (users) {
+      res.end(JSON.stringify(users));
+    });
+  },
 
+  ping: function (req, res) {
+    req.group.getUsers()
+    .then(function (users) {
+      users.forEach(function (user) {
+
+      })
+      res.end('Pinged ' + users.length + 'members of ' + req.group.name);
+    });
   }
 };

@@ -11,5 +11,6 @@ module.exports = function (app) {
   app.get('/', groupController.browse);
 
   app.post('/:group', groupController.join);
+  app.get('/:group', groupController.members);
   app.post('/:group/pings/', groupController.ping);
 };
