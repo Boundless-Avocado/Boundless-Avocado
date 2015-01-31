@@ -19,7 +19,7 @@ module.exports = {
       var group = Group.build(req.body);
       group.save()
       .then(function (result) {
-        res.end('Success:', result);
+        res.end(JSON.stringify(result));
       })
     });
   },
@@ -37,7 +37,7 @@ module.exports = {
     .then(function (user) {
       user.addGroup(req.groupId)
       .then(function (result) {
-        res.end('Success:', result);
+        res.end(JSON.stringify(result));
       })
       .error(function (err) {
         console.log(err);
