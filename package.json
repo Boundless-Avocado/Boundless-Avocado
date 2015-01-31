@@ -14,11 +14,14 @@
   },
   "devDependencies": {
     "grunt": "^0.4.4",
+    "grunt-karma": "^0.8.3",
     "grunt-contrib-jshint": "^0.9.2",
+    "grunt-casperjs": "^2.0.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-shell": "^0.6.4",
     "grunt-nodemon": "^0.2.1",
     "grunt-mocha-test": "^0.10.0",
+    "grunt-express-server": "^0.4.19",
     "chai": "^1.9.0",
     "mocha": "^1.20.1"
   },

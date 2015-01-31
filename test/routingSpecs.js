@@ -1,3 +1,13 @@
+var request = require('supertest');
+var express = require('express');
+var expect = require('chai').expect;
+var app = require('../server-config.js');
+
+var db = require('../app/config');
+
+var User = require('../app/models/user.solution');
+var Link = require('../app/models/link.solution');
+
 describe('Routing', function () {
   var $route;
   beforeEach(module('boundless'));

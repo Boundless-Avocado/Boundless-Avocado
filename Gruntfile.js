@@ -35,32 +35,32 @@ module.exports = function(grunt) {
       }
     },
 
-    watch: {
-      scripts: {
-        files: [
-          'client/**/*.js',
-          'server/**/*.js',
-        ],
-        tasks: [
+    // watch: {
+    //   scripts: {
+    //     files: [
+    //       'client/**/*.js',
+    //       'server/**/*.js',
+    //     ],
+    //     tasks: [
         
-        ]
-      },
-      css: {
-        files: 
-        tasks: []
-      }
-    },
+    //     ]
+    //   },
+    //   css: {
+    //     files: 
+    //     tasks: []
+    //   }
+    // },
 
-    shell: {
-      prodServer: {
-        command: 'git push azure master',
-        options: {
-          stdout: true,
-          stderr: true,
-          failOnError: true
-        }
-      }
-    },
+    // shell: {
+    //   prodServer: {
+    //     command: 'git push azure master',
+    //     options: {
+    //       stdout: true,
+    //       stderr: true,
+    //       failOnError: true
+    //     }
+    //   }
+    // },
 
   });
 
@@ -69,6 +69,9 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-shell');
+  grunt.loadNpmTasks('grunt-express-server');
+  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-casperjs');
 
 
   ////////////////////////////////////////////////////
@@ -80,14 +83,14 @@ module.exports = function(grunt) {
     'mochaTest'
   ]);
 
-  grunt.registerTask('upload', [
-    grunt.task.run([ 'shell:prodServer' ]);
-  ]);
+  // grunt.registerTask('upload', [
+  //   grunt.task.run([ 'shell:prodServer' ])
+  // ]);
 
 
   grunt.registerTask('deploy', [
-    'test',
-    'upload'
+    'test'
+    // 'upload'
   ]);
 
 
