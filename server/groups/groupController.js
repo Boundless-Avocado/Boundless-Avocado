@@ -33,7 +33,7 @@ module.exports = {
 
   join: function (req, res) {
     // TODO: security concern that username is coming from POST request. Easy to forge
-    User.findOne({where: {username: req.body.username}})
+    require('../users/userModel.js').findOne({where: {username: req.body.username}})
     .then(function (user) {
       user.addGroup(req.groupId)
       .then(function (result) {
