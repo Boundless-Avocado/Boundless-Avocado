@@ -1,19 +1,21 @@
 angular.module('boundless.groups', [])
 
-.controller('GroupsController', function($scope, $window, Groups) {
+.controller('GroupsController', function($scope, $window, $location, Groups) {
 	//hold data here after quering db
 	$scope.data = {
 		//this is just dummy data to get the ng-repeat working correctly
-		groups: [{groupName: 'Basketball'}, {groupName: 'Tennis'}, {groupName: 'Tap Dancing'}]
+		// groups: [{groupName: 'Basketball'}, {groupName: 'Tennis'}, {groupName: 'Tap Dancing'}]
+		groups: Groups.data
 	};
 
 	$scope.joinGroup = function(groupName) {
 		var username = $window.localStorage.getItem('username');
-		var groupName =groupName.groupName;
+		var groupName =groupName.name;
 		var data = {
 			username: username, 
-			groupName: groupName
+			name: groupName
 		};
+		console.log(data.username +' joined the group: ' + data.name);
 
 		Groups.joinGroup(data)
 			.then(function() {
@@ -29,18 +31,18 @@ angular.module('boundless.groups', [])
 		Groups.getGroups()
 			//server sends back groups which should be an array containing objects
 			.then(function (data) {
-				console.log(data);
-				$scope.data.groups = data.data;
+				$scope.data.groups = data;
 		})
 	};
 
 	$scope.createGroup = function() {
+		console.log($scope.data.newGroup)
 		//pass groupName & username to create a new group
 		var groupName = $scope.data.newGroup;
 		var username = $window.localStorage.getItem('username');
 		var data = {
 			username: username, 
-			groupName: groupName
+			name: groupName
 		};
 
 		Groups.createGroup(data)
@@ -54,11 +56,12 @@ angular.module('boundless.groups', [])
 
 	$scope.pingGroup = function(groupName) {
 		//pass groupName & username to ping the group
-		var groupName =groupName.groupName;
+		var groupName =groupName.name;
+		console.log('pingGroup: ' + groupName)
 		var username = $window.localStorage.getItem('username');
 		var data = {
 			username: username, 
-			groupName: groupName
+			name: groupName
 		};
 
 		Groups.pingGroup(data)
@@ -70,4 +73,5 @@ angular.module('boundless.groups', [])
 			});
 	};
 
+	$scope.getGroups();
 });	

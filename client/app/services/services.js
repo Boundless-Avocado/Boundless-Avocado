@@ -8,19 +8,20 @@ angular.module('boundless.services', [])
 		console.log('getting groups data!');
 		return $http({
 			method: 'GET',
-			url: '/api/groups'
+			url: '/api/groups/'
 		})
 		.then(function (resp) {
+			console.log('this is resp: ' + resp);
 			return resp.data;
 		})
 	};
 
-	var createGroup = function(newGroup) {
-		console.log(newGroup);
+	var createGroup = function(data) {
+		console.log(data.username + ' created the group: ' + data.name);
 		return $http({
 			method: 'POST',
-			url: '/api/groups',
-			data: newGroup
+			url: '/api/groups/',
+			data: data
 		})
 		.then(function(resp) {
 			return resp.data;
@@ -30,10 +31,10 @@ angular.module('boundless.services', [])
 		// 'data' is an object containing the groups information
 	var joinGroup = function(data) {
 		// console.log('Joined: ' + data.groupName);
-		console.log(data);
+		console.log(data.username +' joined the group: ' + data.name);
 		return $http({
 			method: 'POST',
-			url: '/api/' + data.groupName,
+			url: '/api/groups/' + data.name + '/',
 			data: data
 		})
 		.then(function(resp) {
@@ -42,7 +43,7 @@ angular.module('boundless.services', [])
 	};
 
 	var pingGroup = function(data) {
-		console.log(data);
+		console.log(data.username + 'pinged the group: ' + data.name);
 		return $http({
 			method: 'POST',
 			url: '/api/' + data.groupName + '/pings/',
@@ -71,7 +72,7 @@ angular.module('boundless.services', [])
 		console.log(user);
 		return $http({
 				method: 'POST',
-				url: '/api/users/siginin',
+				url: '/api/users/',
 				data: user
 		})
 		.then(function(resp) {
@@ -83,7 +84,7 @@ angular.module('boundless.services', [])
 	var signup = function(user) {
 		return $http({
 			method: 'POST',
-			url: '/api/users/signup',
+			url: '/api/users/',
 			data: user
 		})
 		.then(function(resp) {
