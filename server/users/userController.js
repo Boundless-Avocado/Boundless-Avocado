@@ -24,31 +24,32 @@ module.exports = {
             });
         }
       })
-      .fail(function (error) {
+      .catch(function (error) {
         next(error);
       });
   },
 
   signup: function (req, res, next) {
     // check to see if user already exists
-    User.findOne({username: req.body.username})
+    User.findOne({where: {username: req.body.username}})
       .then(function(user) {
         if (user) {
           next(new Error('User already exists'));
         } else {
           // make a new user if not one
           User.sync().then(function () {
-            var user = Users.build(req.body);
+            var user = User.build(req.body);
             user.save();
           });
         }
       })
       .then(function (user) {
-        // create token to send back for auth
-        var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+        // TODO: create token to send back for auth
+        // var token = jwt.encode(user, 'secret');
+        // res.json({token: token});
+        res.send(req.body);
       })
-      .fail(function (error) {
+      .catch(function (error) {
         next(error);
       });
   },
@@ -72,7 +73,7 @@ module.exports = {
             res.send(401);
           }
         })
-        .fail(function (error) {
+        .catch(function (error) {
           next(error);
         });
     }
