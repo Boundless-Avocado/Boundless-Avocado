@@ -16,7 +16,6 @@ module.exports = {
 
   create: function (req, res) {
     Group.sync().success(function () {
-      console.log(req.body)
       var group = Group.build(req.body);
       group.save()
       .success(function (result) {
@@ -26,9 +25,9 @@ module.exports = {
   },
 
   browse: function (req, res) {
-    Group.find()
+    Group.findAll()
     .success(function (groups) {
-      res.end(groups);
+      res.end(JSON.stringify(groups));
     });
   },
 
