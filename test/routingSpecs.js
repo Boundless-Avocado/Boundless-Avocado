@@ -1,13 +1,3 @@
-var request = require('supertest');
-var express = require('express');
-var expect = require('chai').expect;
-var app = require('../server-config.js');
-
-var db = require('../app/config');
-
-var User = require('../app/models/user.solution');
-var Link = require('../app/models/link.solution');
-
 describe('Routing', function () {
   var $route;
   beforeEach(module('boundless'));
@@ -19,20 +9,24 @@ describe('Routing', function () {
   it('Should have /signup route, template, and controller', function () {
     expect($route.routes['/signup']).to.be.ok();
     expect($route.routes['/signup'].controller).to.be('AuthController');
-    expect($route.routes['/signup'].templateUrl).to.be('client/app/auth/signup.html');
+    expect($route.routes['/signup'].templateUrl).to.be('app/auth/signup.html');
   });
 
   it('Should have /signin route, template, and controller', function () {
     expect($route.routes['/signin']).to.be.ok();
     expect($route.routes['/signin'].controller).to.be('AuthController');
-    expect($route.routes['/signin'].templateUrl).to.be('client/app/auth/signin.html');
+    expect($route.routes['/signin'].templateUrl).to.be('app/auth/signin.html');
   });
 
-  it('Should have /groups route, template, and controller', function () {
-    expect($route.routes['/groups']).to.be.ok();
-    expect($route.routes['/groups'].controller).to.be('GroupsController');
-    expect($route.routes['/groups'].templateUrl).to.be('client/app/groups/groups.html');
+  it('Should have /links route, template, and controller', function () {
+    expect($route.routes['/links']).to.be.ok();
+    expect($route.routes['/links'].controller).to.be('LinksController');
+    expect($route.routes['/links'].templateUrl).to.be('app/links/links.html');
   });
 
+  it('Should have /shorten route, template, and controller', function () {
+    expect($route.routes['/shorten']).to.be.ok();
+    expect($route.routes['/shorten'].controller).to.be('ShortenController');
+    expect($route.routes['/shorten'].templateUrl).to.be('app/shorten/shorten.html');
+  });
 });
-

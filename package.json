@@ -22,7 +22,7 @@
     "grunt-nodemon": "^0.2.1",
     "grunt-mocha-test": "^0.10.0",
     "grunt-express-server": "^0.4.19",
-    "chai": "^1.9.0",
+    "chai": "^1.9.1",
     "mocha": "^1.20.1"
   },
   "dependencies": {
