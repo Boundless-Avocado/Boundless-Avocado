@@ -20,19 +20,17 @@ module.exports = function(grunt) {
       }
     },
 
-    uglify: {
-    },
-
     jshint: {
       files: [
-        // Add filespec list here
+        'Gruntfile.js',
+        'client/**/*.js',
+        'server/**/*.js'
       ],
       options: {
         force: 'true',
         jshintrc: '.jshintrc',
         ignores: [
-          'public/lib/**/*.js',
-          'public/dist/**/*.js'
+          'client/lib/**/*.js',
         ]
       }
     },
@@ -40,17 +38,27 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: [
-          'public/client/**/*.js',
-          'public/lib/**/*.js',
+          'client/**/*.js',
+          'server/**/*.js',
         ],
         tasks: [
-          'concat',
-          'uglify'
+        
         ]
       },
       css: {
-        files: 'public/*.css',
-        tasks: ['cssmin']
+        files: 
+        tasks: []
+      }
+    },
+
+    shell: {
+      prodServer: {
+        command: 'git push azure master',
+        options: {
+          stdout: true,
+          stderr: true,
+          failOnError: true
+        }
       }
     },
 
@@ -60,9 +68,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-contrib-karma');
-
-
+  grunt.loadNpmTasks('grunt-shell');
 
 
   ////////////////////////////////////////////////////
@@ -70,15 +76,18 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
+    'jshint',
     'mochaTest'
   ]);
 
-  grunt.registerTask('build', [
+  grunt.registerTask('upload', [
+    grunt.task.run([ 'shell:prodServer' ]);
   ]);
 
 
   grunt.registerTask('deploy', [
-    // add your deploy tasks here
+    'test',
+    'upload'
   ]);
 
 
