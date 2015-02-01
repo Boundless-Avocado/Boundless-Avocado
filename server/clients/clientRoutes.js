@@ -9,6 +9,7 @@ module.exports = function (app) {
       if (req.body.Body.slice(0,5).toUpperCase() === "JOIN ") {
         groupController.find(req.body.Body.slice(5), function (group) {
           req.group = group;
+          req.body.username = user.username;
           groupController.join(req, res);
         });
       } else if (req.body.Body.slice(0,7).toUpperCase() === "CREATE ") {
