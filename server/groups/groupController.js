@@ -10,19 +10,9 @@ module.exports = {
       if (!group) {
         console.log('user is searching for "' + groupName + '", but not in database');
       } else {
-        req.groupId = group.id;
+        req.group = group;
         next();
       }
-    });
-  },
-
-  create: function (req, res) {
-    Group.sync().then(function () {
-      var group = Group.build(req.body);
-      group.save()
-      .then(function (result) {
-        res.end(JSON.stringify(result));
-      })
     });
   },
 
@@ -33,21 +23,45 @@ module.exports = {
     });
   },
 
+  create: function (req, res) {
+    Group.build(req.body).save()
+    .then(function (result) {
+      res.end(JSON.stringify(result));
+    });
+  },
+
+  members: function (req, res) {
+    req.group.getUsers()
+    .then(function (users) {
+      res.end(JSON.stringify(users));
+    });
+  },
+
   join: function (req, res) {
     // TODO: security concern that username is coming from POST request. Easy to forge
-    User.findOne({where: {username: req.body.username}})
+    require('../users/userModel.js').findOne({where: {username: req.body.username}})
     .then(function (user) {
-      user.addGroup(req.groupId)
+      user.addGroup(req.group.id)
       .then(function (result) {
         res.end(JSON.stringify(result));
       })
-      .error(function (err) {
+      .catch(function (err) {
         console.log(err);
       });
     });
   },
 
-  ping: function (req, res) {
+  history: function (req, res) {
 
+  },
+
+  ping: function (req, res) {
+    req.group.getUsers()
+    .then(function (users) {
+      users.forEach(function (user) {
+
+      })
+      res.end('Pinged ' + users.length + 'members of ' + req.group.name);
+    });
   }
 };
