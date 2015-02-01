@@ -7,9 +7,12 @@ module.exports = function (app) {
 
   app.param('group', groupController.findGroup);
 
-  app.post('/', groupController.create);
   app.get('/', groupController.browse);
+  app.post('/', groupController.create);
 
+  app.get('/:group', groupController.members);
   app.post('/:group', groupController.join);
+
+  app.get('/:group/pings/', groupController.history);
   app.post('/:group/pings/', groupController.ping);
 };
