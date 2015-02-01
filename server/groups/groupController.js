@@ -1,7 +1,11 @@
 var Group = require('./groupModel.js');
 require('../db/relationshipModel.js'); // sets up many-to-many relationship
+<<<<<<< HEAD
 var utils = require('../config/utils');
 
+=======
+require('../db/pingModel.js'); // sets up Pings table
+>>>>>>> 7bf11b0c0f55b9f300d1b1db892dc86ed4daf3ce
 
 module.exports = {
   parseGroupUrl: function (req, res, next, groupName) {
@@ -56,12 +60,16 @@ module.exports = {
   },
 
   history: function (req, res) {
-
+    req.group.getPings()
+    .then(function (pings) {
+      res.end(JSON.stringify(pings));
+    });
   },
 
   ping: function (req, res) {
     req.group.getUsers()
     .then(function (users) {
+      req.group.createPing({UserId: req.body.userId});
       users.forEach(function (user) {
         utils.twilio(req.user.username + "says, 'Lets get together for some " + req.group.name + " today!'", user.phone);
         utils.sendgrid("Why don't we get together for some " + req.group.name + " today?", req.user.username + " invited you!", user.email);
