@@ -9,6 +9,7 @@ module.exports = function (app) {
       if (req.body.Body.slice(0,5).toUpperCase() === "JOIN ") {
         groupController.find(req.body.Body.slice(5), function (group) {
           req.group = group;
+          req.body.username = user.username;
           groupController.join(req, res);
         });
       } else if (req.body.Body.slice(0,7).toUpperCase() === "CREATE ") {
@@ -20,7 +21,7 @@ module.exports = function (app) {
       //   TODO: capture user info through sms
       //   userController.signup(req, res);
       } else {
-        groupController.find(req.body.Body, function (group) {
+        groupController.find(req.body.Body.toLowerCase(), function (group) {
           req.group = group;
           groupController.ping(req, res);
         });
