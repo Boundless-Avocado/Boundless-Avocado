@@ -5,10 +5,10 @@ var utils = require('../config/utils');
 
 
 module.exports = {
-  findByPhone: function (phone)
+  findByPhone: function (phone) {
     User.findOne({where: {phone: phone}})
     .then(function (user) {
-      if (!group) {
+      if (!user) {
         console.log('No user with number ' + phone + ' in database');
       } else {
         return user;
@@ -16,10 +16,10 @@ module.exports = {
     });
   },
 
-  findByEmail: function (email)
+  findByEmail: function (email) {
     User.findOne({where: {email: email}})
     .then(function (user) {
-      if (!group) {
+      if (!user) {
         console.log('No user with email ' + email + ' in database');
       } else {
         return user;
