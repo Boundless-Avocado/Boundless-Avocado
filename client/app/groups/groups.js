@@ -56,12 +56,12 @@ angular.module('boundless.groups', [])
 
 	$scope.pingGroup = function(groupName) {
 		//pass groupName & username to ping the group
-		var name =groupName.name;
+		// var name =groupName.name;
 		console.log('pingGroup: ' + name)
 		var username = $window.localStorage.getItem('username');
 		var data = {
-			username: username, 
-			name: name
+			username: username
+			// name: name
 		};
 
 		Groups.pingGroup(data)
