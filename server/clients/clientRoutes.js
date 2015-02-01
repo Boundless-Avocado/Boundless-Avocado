@@ -21,7 +21,7 @@ module.exports = function (app) {
       //   TODO: capture user info through sms
       //   userController.signup(req, res);
       } else {
-        groupController.find(req.body.Body, function (group) {
+        groupController.find(req.body.Body.toLowerCase(), function (group) {
           req.group = group;
           groupController.ping(req, res);
         });
