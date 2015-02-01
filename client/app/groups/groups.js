@@ -61,7 +61,7 @@ angular.module('boundless.groups', [])
 		var username = $window.localStorage.getItem('username');
 		console.log('pingGroup: ' + username)
 		var data = {
-			username: username
+			username: username,
 			name: name
 		};
 
