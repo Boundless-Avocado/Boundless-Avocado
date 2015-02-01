@@ -63,8 +63,8 @@ module.exports = {
     req.group.getUsers()
     .then(function (users) {
       users.forEach(function (user) {
-        utils.twilio("Why don't we get together for some " + req.group.name + " today?", user.phone);
-        utils.sendgrid("Why don't we get together for some " + req.group.name + " today?",  user.email);
+        utils.twilio(req.user.username + "says, 'Lets get together for some " + req.group.name + " today!'", user.phone);
+        utils.sendgrid("Why don't we get together for some " + req.group.name + " today?", req.user.username + " invited you!", user.email);
       })
       res.end('Pinged ' + users.length + 'members of ' + req.group.name);
     });
