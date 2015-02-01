@@ -4,14 +4,18 @@ var utils = require('../config/utils');
 
 
 module.exports = {
-  findGroup: function (req, res, next, groupName) {
+  parseGroupUrl: function (req, res, next, groupName) {
+    req.group = find(groupName);
+    next();
+  },
+
+  find: function (groupName)
     Group.findOne({where: {name: groupName}})
     .then(function (group) {
       if (!group) {
         console.log('user is searching for "' + groupName + '", but not in database');
       } else {
-        req.group = group;
-        next();
+        return group;
       }
     });
   },
@@ -59,7 +63,8 @@ module.exports = {
     req.group.getUsers()
     .then(function (users) {
       users.forEach(function (user) {
-
+        utils.twilio("Why don't we get together for some " + req.group.name + " today?", user.phone);
+        utils.sendgrid("Why don't we get together for some " + req.group.name + " today?",  user.email);
       })
       res.end('Pinged ' + users.length + 'members of ' + req.group.name);
     });

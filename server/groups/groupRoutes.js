@@ -4,7 +4,7 @@ var groupController = require('./groupController.js');
 module.exports = function (app) {
   // app is injected from middlware.js
 
-  app.param('group', groupController.findGroup);
+  app.param('group', groupController.parseGroupUrl);
 
   app.get('/', groupController.browse);
   app.post('/', groupController.create);
