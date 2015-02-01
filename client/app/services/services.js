@@ -11,7 +11,6 @@ angular.module('boundless.services', [])
 			url: '/api/groups/'
 		})
 		.then(function (resp) {
-			console.log('this is resp: ' + resp);
 			return resp.data;
 		})
 	};

@@ -3,66 +3,6 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-<<<<<<< HEAD
-    },
-
-    mochaTest: {
-      test: {
-        options: {
-          reporter: 'spec'
-        },
-        src: ['test/**/*.js']
-      }
-    },
-
-    nodemon: {
-      dev: {
-        script: 'server/server.js'
-      }
-    },
-
-    jshint: {
-      files: [
-        'Gruntfile.js',
-        'client/**/*.js',
-        'server/**/*.js'
-      ],
-      options: {
-        force: 'true',
-        jshintrc: '.jshintrc',
-        ignores: [
-          'client/lib/**/*.js'
-        ]
-      }
-    },
-
-    // cssmin: {
-    // },
-
-    // watch: {
-    //   scripts: {
-    //     files: [
-    //       'client/**/*.js',
-    //       'server/**/*.js',
-    //     ],
-    //     tasks: [
-    //     ]
-    //   },
-    //   css: {
-    //     files: 'public/*.css',
-    //     tasks: ['cssmin']
-    //   }
-    // },
-
-    shell: {
-      prodServer: {
-      }
-    },
-  });
-
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-=======
       options:{
         seperator:';'
       },
@@ -96,20 +36,20 @@ module.exports = function(grunt) {
       }
     },
 
-    // jshint: {
-    //   files: [
-    //     'public/dist/production.js'
-    //     // Add filespec list here
-    //   ],
-    //   options: {
-    //     force: 'true',
-    //     jshintrc: '.jshintrc',
-    //     ignores: [
-    //       'public/lib/**/*.js',
-    //       'public/dist/**/*.js'
-    //     ]
-    //   }
-    // },
+    jshint: {
+      files: [
+        'client/**/*.js',
+        'server/**/*.js'
+      ],
+      options: {
+        force: 'true',
+        jshintrc: '.jshintrc',
+        ignores: [
+          'client/lib/**/*.js',
+          'Gruntfile.js',
+        ]
+      }
+    },
 
     cssmin: {
       target: {
@@ -157,7 +97,6 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-contrib-concat');
   grunt.loadNpmTasks('grunt-contrib-cssmin');
->>>>>>> b3decd9835702557c431d48bbbc32548e6202a61
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
@@ -172,45 +111,29 @@ module.exports = function(grunt) {
     nodemon.stdout.pipe(process.stdout);
     nodemon.stderr.pipe(process.stderr);
 
-<<<<<<< HEAD
-  //   grunt.task.run([ 'watch' ]);
-  // });
-=======
     grunt.task.run([ 'watch' ]);
   });
->>>>>>> b3decd9835702557c431d48bbbc32548e6202a61
 
   ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-<<<<<<< HEAD
-    'jshint',
-    'mochaTest'
-  ]);
-
-  grunt.registerTask('build', [
-=======
-    'mochaTest', 'jshint'
+    'jshint'
   ]);
 
   grunt.registerTask('build', [
     'concat', 'uglify'
->>>>>>> b3decd9835702557c431d48bbbc32548e6202a61
   ]);
 
   grunt.registerTask('upload', function(n) {
     if(grunt.option('prod')) {
-<<<<<<< HEAD
-=======
       grunt.task.run([
         'shell:scale',
         'shell:push',
         'shell:logOutput',
         'shell:scaleDown'
       ])
->>>>>>> b3decd9835702557c431d48bbbc32548e6202a61
       // add your production server task here
     } else {
       grunt.task.run([ 'server-dev' ]);
@@ -221,12 +144,6 @@ module.exports = function(grunt) {
     'test',
     'build',
     'upload'
-<<<<<<< HEAD
-  ]);
-
-
-};
-=======
     // add your deploy tasks here
   ]);
 
@@ -236,4 +153,3 @@ module.exports = function(grunt) {
   ]);
 
 };
->>>>>>> b3decd9835702557c431d48bbbc32548e6202a61
