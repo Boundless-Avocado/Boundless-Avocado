@@ -46,7 +46,7 @@ angular.module('boundless.services', [])
 		return $http({
 			method: 'POST',
 			url: '/api/' + data.groupName + '/pings/',
-			data: data.username
+			data: data
 		})
 		.then(function(resp) {
 			return resp.data;
