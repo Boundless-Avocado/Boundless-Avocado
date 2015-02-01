@@ -3,7 +3,7 @@ var userController = require('../users/userController.js');
 
 module.exports = function (app) {
   app.post('/twilio', function determineRoute (req, res){
-    req.user = userController.findByPhone(req.body.From.slice(0,2));
+    req.user = userController.findByPhone(req.body.From.slice(2));
 
     if (req.body.Body.slice(0,5).toUpperCase() === "JOIN ") {
       req.body = {'name': req.body.Body.slice(5), 'phone': req.body.From};
@@ -17,9 +17,11 @@ module.exports = function (app) {
     //   TODO: capture user info through sms
     //   userController.signup(req, res);
     } else {
-      req.group = groupController.find(req.body.Body);
-      req.body = {'name': req.body.Body, 'phone': req.body.From};
-      groupController.ping(req, res);
+      groupController.find(req.body.Body, function(group){
+        req.group = group;
+        req.body = {'name': req.body.Body, 'phone': req.body.From};
+        groupController.ping(req, res);
+      });
     }
   });
 
