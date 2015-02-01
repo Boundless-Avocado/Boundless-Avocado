@@ -7,8 +7,10 @@ module.exports = function (app) {
       req.user = user;
 
       if (req.body.Body.slice(0,5).toUpperCase() === "JOIN ") {
-        req.body = {'name': req.body.Body.slice(5)};
-        groupController.join(req, res);
+        groupController.find(req.body.Body.slice(5), function (group) {
+          req.group = group;
+          groupController.join(req, res);
+        });
       } else if (req.body.Body.slice(0,7).toUpperCase() === "CREATE ") {
         req.body = {'name': req.body.Body.slice(7)};
         groupController.create(req, res);
