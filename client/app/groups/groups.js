@@ -10,10 +10,10 @@ angular.module('boundless.groups', [])
 
 	$scope.joinGroup = function(groupName) {
 		var username = $window.localStorage.getItem('username');
-		var groupName =groupName.name;
+		var name =groupName.name;
 		var data = {
 			username: username, 
-			name: groupName
+			name: name
 		};
 		console.log(data.username +' joined the group: ' + data.name);
 
@@ -38,11 +38,11 @@ angular.module('boundless.groups', [])
 	$scope.createGroup = function() {
 		console.log($scope.data.newGroup)
 		//pass groupName & username to create a new group
-		var groupName = $scope.data.newGroup;
+		var name = $scope.data.newGroup;
 		var username = $window.localStorage.getItem('username');
 		var data = {
 			username: username, 
-			name: groupName
+			name: name
 		};
 
 		Groups.createGroup(data)
@@ -56,12 +56,12 @@ angular.module('boundless.groups', [])
 
 	$scope.pingGroup = function(groupName) {
 		//pass groupName & username to ping the group
-		var groupName =groupName.name;
-		console.log('pingGroup: ' + groupName)
+		var name =groupName.name;
+		console.log('pingGroup: ' + name)
 		var username = $window.localStorage.getItem('username');
 		var data = {
 			username: username, 
-			name: groupName
+			name: name
 		};
 
 		Groups.pingGroup(data)
@@ -71,6 +71,15 @@ angular.module('boundless.groups', [])
 			.catch(function(error) {
 				console.log(error);
 			});
+	};
+
+	$scope.getUsers = function(groupName) {
+		console.log(groupName);
+		var name = groupName.name
+		Groups.getUsers(name)
+			.then(function(data) {
+				$scope.data.users = data;
+			})
 	};
 
 	$scope.getGroups();

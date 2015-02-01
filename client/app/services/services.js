@@ -42,11 +42,23 @@ angular.module('boundless.services', [])
 	};
 
 	var pingGroup = function(data) {
-		console.log(data.username + 'pinged the group: ' + data.name);
+		console.log(data.username + ' pinged the group: ' + data.name);
 		return $http({
 			method: 'POST',
 			url: '/api/' + data.groupName + '/pings/',
-			data: data
+			data: data.username
+		})
+		.then(function(resp) {
+			return resp.data;
+		})
+	};
+
+	var getUsers = function(data) {
+		console.log('gettings users in group: ' + data);
+		return $http({
+				method: 'GET',
+				url: '/api/groups/' + data.name + '/',
+				data: data
 		})
 		.then(function(resp) {
 			return resp.data;
@@ -57,7 +69,8 @@ angular.module('boundless.services', [])
 		getGroups: getGroups,
 		createGroup: createGroup,
 		joinGroup: joinGroup,
-		pingGroup: pingGroup
+		pingGroup: pingGroup,
+		getUsers: getUsers
 	};
 })
 

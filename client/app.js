@@ -6,7 +6,7 @@ angular.module('boundless', [
 	'boundless.auth'
 ])
 	//using ui-router to route client
-.config(function($stateProvider, $urlRouterProvider, $httpProvider) {
+.config(function ($stateProvider, $urlRouterProvider, $httpProvider) {
 		
 		//reroutes to '/' as default
 	$urlRouterProvider.otherwise('/');
@@ -42,29 +42,30 @@ angular.module('boundless', [
 			templateUrl: 'app/groups/newgroup.html',
 			controller: 'GroupsController',
 			url: '/newgroup'
-		})
+		});
 
 		// We add our $httpInterceptor into the array
 		// of interceptors. Think of it like middleware for your ajax calls
-		$httpProvider.interceptors.push('AttachTokens');
+	$httpProvider.interceptors.push('AttachTokens');
+
 })
 
 	//dont know what to use controller for here
-.controller('BoundlessController', ['$scope','$location','$stateParams', function($scope, $location, $stateParams){
-	// console.log($stateParams);
-	$scope.go = function ( path ) {
+.controller('BoundlessController', ['$scope', '$location', function ($scope, $location) {
+	// console.log($stateParams);s
+	$scope.go = function (path) {
 		console.log('GO!');
 		console.log('redirected');
-  		$location.path( path );
+		$location.path(path);
 	};
 
 }])
 	
-.factory('AttachTokens', function($window) {
+.factory('AttachTokens', function ($window) {
 		//here we attach tokens issued by server in order to create sessions. 
 		//generic for now, need to update url once server is up
 	var attach = {
-		request: function(object) {
+		request: function (object) {
 			var jwt = $window.localStorage.getItem('boundless-avocado');
 			if (jwt) {
 				object.headers['x-access-token'] = jwt;
@@ -79,9 +80,7 @@ angular.module('boundless', [
 .run(function ($rootScope, $location) {
 	console.log('run');
 	$rootScope.$on('$routeChangeStart', function (evt, next, current) {
-	    // if (next.$$route && next.$$route.authenticate && !Auth.isAuth()) {
-	      $location.path('/');
-	      console.log('run');
-	    // }
-	  });
+	  $location.path('/');
+	  console.log('run');
+	});
 });
