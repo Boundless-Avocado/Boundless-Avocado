@@ -21,7 +21,6 @@ coverage
 # Compiled Dirs (http://nodejs.org/api/addons.html)
 build/
 
-
 # Dependency directorys
 # Deployed apps should consider commenting these lines out:
 # see https://npmjs.org/doc/faq.html#Should-I-check-my-node_modules-folder-into-git
@@ -30,3 +29,5 @@ bower_components/
 server/keys.js
 client/lib
 
+# SQLite database
+*.sqlite
