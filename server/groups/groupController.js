@@ -1,5 +1,6 @@
 var Group = require('./groupModel.js');
 require('../db/relationshipModel.js'); // sets up many-to-many relationship
+require('../db/pingModel.js'); // sets up Pings table
 
 module.exports = {
   findGroup: function (req, res, next, groupName) {
@@ -50,16 +51,18 @@ module.exports = {
   },
 
   history: function (req, res) {
-
+    req.group.getPings()
+    .then(function (pings) {
+      res.end(JSON.stringify(pings));
+    });
   },
 
   ping: function (req, res) {
     req.group.getUsers()
     .then(function (users) {
-      users.forEach(function (user) {
-
-      })
-      res.end('Pinged ' + users.length + 'members of ' + req.group.name);
+      req.group.createPing({UserId: req.body.userId});
+      users.forEach(function (user) {});
+      res.end('Pinged ' + users.length + ' members of ' + req.group.name);
     });
   }
 };
