@@ -1,4 +1,4 @@
-var Users = require('./userModel.js'),
+var User = require('./userModel.js'),
     Q    = require('q'),
     jwt  = require('jwt-simple');
 
@@ -24,31 +24,32 @@ module.exports = {
             });
         }
       })
-      .fail(function (error) {
+      .catch(function (error) {
         next(error);
       });
   },
 
   signup: function (req, res, next) {
     // check to see if user already exists
-    Users.findOne({username: req.body.username})
+    User.findOne({where: {username: req.body.username}})
       .then(function(user) {
         if (user) {
-          next(new Error('User already exist!'));
+          next(new Error('User already exists'));
         } else {
           // make a new user if not one
-          Users.sync().then(function () {
-            var user = Users.build(req.body);
+          User.sync().then(function () {
+            var user = User.build(req.body);
             user.save();
           });
         }
       })
       .then(function (user) {
-        // create token to send back for auth
-        var token = jwt.encode(user, 'secret');
-        res.json({token: token});
+        // TODO: create token to send back for auth
+        // var token = jwt.encode(user, 'secret');
+        // res.json({token: token});
+        res.send(req.body);
       })
-      .fail(function (error) {
+      .catch(function (error) {
         next(error);
       });
   },
@@ -72,7 +73,7 @@ module.exports = {
             res.send(401);
           }
         })
-        .fail(function (error) {
+        .catch(function (error) {
           next(error);
         });
     }
