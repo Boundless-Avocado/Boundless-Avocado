@@ -45,8 +45,8 @@ angular.module('boundless.services', [])
 		console.log(data.username + ' pinged the group: ' + data.name);
 		return $http({
 			method: 'POST',
-			url: '/api/' + data.groupName + '/pings/',
-			data: data
+			url: '/api/' + data.name + '/pings/',
+			data: {username: data.username}
 		})
 		.then(function(resp) {
 			return resp.data;
@@ -54,7 +54,6 @@ angular.module('boundless.services', [])
 	};
 
 	var getUsers = function(data) {
-		console.log('gettings users in group: ' + data);
 		return $http({
 				method: 'GET',
 				url: '/api/groups/' + data.name + '/',
