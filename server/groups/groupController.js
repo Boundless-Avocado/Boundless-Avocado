@@ -1,11 +1,7 @@
 var Group = require('./groupModel.js');
 require('../db/relationshipModel.js'); // sets up many-to-many relationship
-<<<<<<< HEAD
-var utils = require('../config/utils');
-
-=======
 require('../db/pingModel.js'); // sets up Pings table
->>>>>>> 7bf11b0c0f55b9f300d1b1db892dc86ed4daf3ce
+var utils = require('../config/utils');
 
 module.exports = {
   parseGroupUrl: function (req, res, next, groupName) {
