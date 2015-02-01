@@ -4,7 +4,7 @@ var Sequelize = require('sequelize');
 var User = db.define('Users', {
   username: {type: Sequelize.STRING, unique: true},
   email: Sequelize.STRING,
-  phone: Sequelize.BIGINT
+  phone: Sequelize.STRING
 });
 
 User.sync();

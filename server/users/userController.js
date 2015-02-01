@@ -1,8 +1,32 @@
-var User = require('./userModel.js'),
-    Q    = require('q'),
-    jwt  = require('jwt-simple');
+var User = require('./userModel.js');
+var Q = require('q');
+var jwt = require('jwt-simple');
+var utils = require('../config/utils');
+
 
 module.exports = {
+  findByPhone: function (phone)
+    User.findOne({where: {phone: phone}})
+    .then(function (user) {
+      if (!group) {
+        console.log('No user with number ' + phone + ' in database');
+      } else {
+        return user;
+      }
+    });
+  },
+
+  findByEmail: function (email)
+    User.findOne({where: {email: email}})
+    .then(function (user) {
+      if (!group) {
+        console.log('No user with email ' + email + ' in database');
+      } else {
+        return user;
+      }
+    });
+  },
+
   signin: function (req, res, next) {
     var username = req.body.username,
         password = req.body.password;
