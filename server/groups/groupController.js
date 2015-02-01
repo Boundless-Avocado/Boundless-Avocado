@@ -5,17 +5,23 @@ var utils = require('../config/utils');
 
 module.exports = {
   parseGroupUrl: function (req, res, next, groupName) {
-    req.group = find(groupName);
-    next();
+    module.exports.find(groupName, function (group) {
+      req.group = group;
+      next();
+    });
   },
 
-  find: function (groupName) {
+  find: function (groupName, callback) {
     Group.findOne({where: {name: groupName}})
     .then(function (group) {
       if (!group) {
         console.log('user is searching for "' + groupName + '", but not in database');
       } else {
-        return group;
+        if (callback) {
+          callback(group);
+        } else {
+          return group;
+        }
       }
     });
   },
