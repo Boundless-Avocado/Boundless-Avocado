@@ -1,5 +1,8 @@
 var Sequelize = require('sequelize');
 
-var db = new Sequelize('avocados', 'avocados', 'Boundless1!', {dialect: 'mysql'});
+var db = new Sequelize('avocado', 'guacman', '', {
+  dialect: 'sqlite',
+  storage: './server/db/db.sqlite'
+});
 
 module.exports = db;
