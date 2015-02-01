@@ -1,7 +1,7 @@
-var User = require('./userModel.js'),
-    Q    = require('q'),
-    jwt  = require('jwt-simple');
-   utils = require('../config/utils');
+var User = require('./userModel.js');
+var Q = require('q');
+var jwt = require('jwt-simple');
+var utils = require('../config/utils');
 
 
 module.exports = {
