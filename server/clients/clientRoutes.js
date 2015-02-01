@@ -3,7 +3,7 @@ var userController = require('../users/userController.js');
 
 module.exports = function (app) {
   app.post('/twilio', function determineRoute (req, res){
-    req.user = userController.findByPhone(req.body.From);
+    req.user = userController.findByPhone(req.body.From.slice(0,2));
 
     if (req.body.Body.slice(0,5).toUpperCase() === "JOIN ") {
       req.body = {'name': req.body.Body.slice(5), 'phone': req.body.From};
