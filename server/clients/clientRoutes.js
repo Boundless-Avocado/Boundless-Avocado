@@ -1,5 +1,5 @@
-var groupController = require('./groupController.js');
-var userController = require('./userController.js');
+var groupController = require('../groups/groupController.js');
+var userController = require('../users/userController.js');
 
 module.exports = function (app) {
   app.post('/twilio', function determineRoute (req, res){
@@ -27,6 +27,6 @@ module.exports = function (app) {
     var user = userController.findByEmail(req.body.From);
 
 
-  }
+  });
 
 };

@@ -9,7 +9,7 @@ module.exports = {
     next();
   },
 
-  find: function (groupName)
+  find: function (groupName) {
     Group.findOne({where: {name: groupName}})
     .then(function (group) {
       if (!group) {
