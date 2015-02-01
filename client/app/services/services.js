@@ -8,19 +8,19 @@ angular.module('boundless.services', [])
 		console.log('getting groups data!');
 		return $http({
 			method: 'GET',
-			url: '/api/groups'
+			url: '/api/groups/'
 		})
 		.then(function (resp) {
 			return resp.data;
 		})
 	};
 
-	var createGroup = function(newGroup) {
-		console.log(newGroup);
+	var createGroup = function(data) {
+		console.log(data.username + ' created the group: ' + data.name);
 		return $http({
 			method: 'POST',
-			url: '/api/groups',
-			data: newGroup
+			url: '/api/groups/',
+			data: data
 		})
 		.then(function(resp) {
 			return resp.data;
@@ -29,11 +29,36 @@ angular.module('boundless.services', [])
 		//new entry should added to the memberships join table. 
 		// 'data' is an object containing the groups information
 	var joinGroup = function(data) {
-		console.log('Joined: ' + data.groupName);
+		// console.log('Joined: ' + data.groupName);
+		console.log(data.username +' joined the group: ' + data.name);
 		return $http({
 			method: 'POST',
-			url: '/api/groups',
+			url: '/api/groups/' + data.name + '/',
 			data: data
+		})
+		.then(function(resp) {
+			return resp.data;
+		})
+	};
+
+	var pingGroup = function(data) {
+		console.log(data.username + ' pinged the group: ' + data.name);
+		return $http({
+			method: 'POST',
+			url: '/api/' + data.groupName + '/pings/',
+			data: data.username
+		})
+		.then(function(resp) {
+			return resp.data;
+		})
+	};
+
+	var getUsers = function(data) {
+		console.log('gettings users in group: ' + data);
+		return $http({
+				method: 'GET',
+				url: '/api/groups/' + data.name + '/',
+				data: data
 		})
 		.then(function(resp) {
 			return resp.data;
@@ -42,8 +67,10 @@ angular.module('boundless.services', [])
 
 	return {
 		getGroups: getGroups,
-		createGroup: createGroup ,
-		joinGroup: joinGroup
+		createGroup: createGroup,
+		joinGroup: joinGroup,
+		pingGroup: pingGroup,
+		getUsers: getUsers
 	};
 })
 
@@ -57,7 +84,7 @@ angular.module('boundless.services', [])
 		console.log(user);
 		return $http({
 				method: 'POST',
-				url: '/api/users/siginin',
+				url: '/api/users/',
 				data: user
 		})
 		.then(function(resp) {
@@ -69,11 +96,11 @@ angular.module('boundless.services', [])
 	var signup = function(user) {
 		return $http({
 			method: 'POST',
-			url: '/api/users/signup',
+			url: '/api/users/',
 			data: user
 		})
 		.then(function(resp) {
-			return resp.data;
+			return resp.data.token;
 		})
 	};
 
@@ -90,11 +117,12 @@ angular.module('boundless.services', [])
 	}
 
 	var signout = function() {
-
+		// $window.localStorage.removeItem('boundless-avocado');
+		// $location.path('/signin');
 	};
 		//checks token to check if user's session is still valid
 	var isAuth = function() {
-
+		// return !!$window.localStorage.getItem('boundless-avocado');
 	};
 
 	return {

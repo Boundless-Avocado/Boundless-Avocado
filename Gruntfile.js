@@ -36,20 +36,20 @@ module.exports = function(grunt) {
       }
     },
 
-    // jshint: {
-    //   files: [
-    //     'public/dist/production.js'
-    //     // Add filespec list here
-    //   ],
-    //   options: {
-    //     force: 'true',
-    //     jshintrc: '.jshintrc',
-    //     ignores: [
-    //       'public/lib/**/*.js',
-    //       'public/dist/**/*.js'
-    //     ]
-    //   }
-    // },
+    jshint: {
+      files: [
+        'client/**/*.js',
+        'server/**/*.js'
+      ],
+      options: {
+        force: 'true',
+        jshintrc: '.jshintrc',
+        ignores: [
+          'client/lib/**/*.js',
+          'Gruntfile.js',
+        ]
+      }
+    },
 
     cssmin: {
       target: {
@@ -119,7 +119,7 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-    'mochaTest', 'jshint'
+    'jshint'
   ]);
 
   grunt.registerTask('build', [
