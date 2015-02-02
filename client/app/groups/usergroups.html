@@ -1,9 +1,13 @@
-<div ng-repeat="groups in data.groups"> 
+<div ng-repeat="usergroups in data.usergroups"> 
 	<div class="col-md-4">
-		<!-- passes the group data to getUsers -->
+
 		<h2><a ng-click="getUsers(groups)">{{ usergroups.name }}</a></h2>
 	  <p>{{ data.users }}</p>
-	  	<!-- this button passes this groups information as an object to joinGroup-->
+	  
+	  <ul> 
+	  	<li ng-repeat='users in data.users'> {{username}} </li>
+	  </ul>	
+	  
 	  <p ><a class="btn btn-default" ng-click='pingGroup(groups)' href="#" role="button">Ping Group &raquo;</a></p>
 
 	</div>
