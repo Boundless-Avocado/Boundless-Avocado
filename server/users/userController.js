@@ -57,6 +57,13 @@ module.exports = {
     });
   },
 
+  browse: function (req, res) {
+    User.findAll()
+    .then(function (users) {
+      res.end(JSON.stringify(users));
+    });
+  },
+
   signin: function (req, res, next) {
     var username = req.body.username,
         password = req.body.password;
