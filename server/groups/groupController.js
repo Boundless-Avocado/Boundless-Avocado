@@ -34,9 +34,18 @@ module.exports = {
   },
 
   create: function (req, res) {
-    Group.build(req.body).save()
+    var newGroup = Group.build(req.body);
+    newGroup.save()
     .then(function (result) {
-      res.end(JSON.stringify(result));
+      if (req.body.username) {
+        require('../users/userController.js').findByUsername(req.body.username, function(user) {
+          user.addGroup(newGroup).then(function (result) {
+            res.end(JSON.stringify(result));
+          });
+        });
+      } else {
+        res.end(JSON.stringify(result));
+      }
     });
   },
 
