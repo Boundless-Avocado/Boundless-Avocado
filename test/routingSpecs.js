@@ -1,1 +1,0 @@
-//writing tests for ui-router is hellaaaa hard

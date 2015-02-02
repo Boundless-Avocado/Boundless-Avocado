@@ -24,6 +24,7 @@ describe('GroupsController', function () {
     };
   }));
 
+
   it('should have a data property on the $scope', function() {
     createController();
     expect($scope.data).to.be.an('object');
@@ -42,5 +43,20 @@ describe('GroupsController', function () {
     expect($scope.data.groups).to.eql(mockGroups);
   });
 
-  
+  it('should be able to create new groups with createGroup()', function () {
+    var data = {username: 'test', name: 'testGroup'};
+
+    $httpBackend.expectPOST("/api/groups/").respond(201, '');
+    $scope.createGroup(data);
+    $httpBackend.flush();
+  });
+
+  it('should be able to join groups with joinGroup()', function () {
+    var data = {username: 'test', name: 'testGroup'};
+
+    $httpBackend.expectPOST("/api/groups/").respond(201, '');
+    $scope.createGroup(data);
+    $httpBackend.flush();
+  });
+
 });

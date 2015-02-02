@@ -46,7 +46,7 @@ describe('AuthController', function () {
     $httpBackend.expectPOST('/api/users/').respond({});
     $scope.signup();
     $httpBackend.flush();
-    expect($window.localStorage.getItem('username')).to.be('test');
+    expect($window.localStorage.getItem('username')).to.be($scope.user.username);
   });
 
   it('should have a signin method', function() {
