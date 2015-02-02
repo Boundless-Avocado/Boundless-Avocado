@@ -13,7 +13,6 @@ angular.module('boundless.auth', [])
 		Auth.signin($scope.user)
 			.then(function(token) {
 					//this is where we will will set a token/cookie/jwt
-				// $window.localStorage.setItem('boundless-avocado', token);
 				$location.path('/groups');
 			})
 			.catch(function(error) {
