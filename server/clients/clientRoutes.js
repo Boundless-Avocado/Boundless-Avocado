@@ -34,6 +34,7 @@ module.exports = function (app) {
   });
 
   app.post('/sendgrid', function (req, res) {
+    console.log(req.body);
     userController.findByEmail(req.body.from, function (user) {
       req.user = user;
 
