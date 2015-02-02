@@ -19,7 +19,7 @@
 	</head>
 	<body>
 		<!-- nav bar. controller is BoundlessController  -->
-		<nav ui-view='navbar' class="navbar navbar-inverse navbar-fixed-top" ng-controller='BoundlessController'>
+		<nav class="navbar navbar-inverse navbar-fixed-top" ng-controller='BoundlessController'>
 		  <div class="container">
 		    <div class="navbar-header">
 		      <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
@@ -43,6 +43,7 @@
 		        <button type="submit" ng-click=go('/groups') class="btn btn-success">Groups</button>
 		        <button type="submit" ng-click=go('/newgroup') class="btn btn-success">Create Group</button>
 		        <button type="submit" ng-click=go('/usergroups') class="btn btn-success">My Groups</button>
+		        <button type="submit" ng-click=go('/signout') class="btn btn-success">Log Out</button>
 
 		      </form>
 		    </div><!--/.navbar-collapse -->

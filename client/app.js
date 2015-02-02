@@ -57,6 +57,12 @@ angular.module('boundless', [
 			url: '/'
 		})
 
+		.state('/signout', {
+			templateUlr: 'app/auth/signout.html',
+			controller: 'AuthController',
+			url: '/signout'
+		})
+
 		.state('/navbar', {
 			templateUrl: 'app/auth/parent.html',
 			controller: 'BoundlessController',

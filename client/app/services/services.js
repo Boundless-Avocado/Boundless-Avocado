@@ -112,7 +112,7 @@ angular.module('boundless.services', [])
 
 	var signout = function() {
 		$window.localStorage.removeItem('username');
-		$location.path('/signin');
+		$location.path('/');
 	};
 		//checks token to check if user's session is still valid
 	var isAuth = function() {
