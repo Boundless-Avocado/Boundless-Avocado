@@ -3,7 +3,9 @@ angular.module('boundless.groups', [])
 .controller('GroupsController', function($scope, $window, $location, Groups) {
 	//hold data here after quering db
 	$scope.data = {
-		groups: Groups.data
+		groups: Groups.data,
+		users: [],
+		usergroups : []
 	};
 
 	$scope.joinGroup = function(groupName) {
@@ -76,12 +78,13 @@ angular.module('boundless.groups', [])
 		console.log('getUsers in group.js: ' + groupName.name)
 		Groups.getUsers(groupName)
 			.then(function(data) {
-				console.log(data);
+				console.log('getUsers data: ' + data);
 				$scope.data.users = data;
 			})
 	};
 
 	$scope.userGroups = function() {
+		console.log('groups.js');
 		var username = $window.localStorage.getItem('username');
 		var data = {
 			username: username
@@ -90,7 +93,6 @@ angular.module('boundless.groups', [])
 		Groups.userGroups(data)
 			.then(function() {
 				$scope.data.usergroups = data;
-				$location.path('/usergroups.html');
 			})
 			.catch(function(error) {
 				console.log(error);
@@ -98,4 +100,5 @@ angular.module('boundless.groups', [])
 	};
 
 	$scope.getGroups();
+	$scope.userGroups();
 });	

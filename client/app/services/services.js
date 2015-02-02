@@ -5,7 +5,6 @@ angular.module('boundless.services', [])
 
 
 	var getGroups = function() {
-		console.log('getting groups data!');
 		return $http({
 			method: 'GET',
 			url: '/api/groups/'
@@ -65,12 +64,13 @@ angular.module('boundless.services', [])
 	};
 
 	var userGroups = function(data) {
+		console.log('service ' + data);
 		return $http({
 			method: 'GET',
 			url: '/api/users/' + data.username + '/groups',
 			data: data
 		})
-	}
+	};
 
 	return {
 		getGroups: getGroups,
@@ -108,25 +108,13 @@ angular.module('boundless.services', [])
 		})
 	};
 
-		//this should query server if confirmation code matches
-	var confirm = function(code) {
-		return $http({
-			method: 'POST',
-			url: '/api/users/confirm',
-			data: code
-		})
-		.then(function(resp) {
-			return resp.data;
-		})
-	}
-
 	var signout = function() {
-		$window.localStorage.removeItem('boundless-avocado');
+		$window.localStorage.removeItem('username');
 		$location.path('/signin');
 	};
 		//checks token to check if user's session is still valid
 	var isAuth = function() {
-		return !!$window.localStorage.getItem('boundless-avocado');
+		return !!$window.localStorage.getItem('username');
 	};
 
 	return {

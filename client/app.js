@@ -42,6 +42,12 @@ angular.module('boundless', [
 			templateUrl: 'app/groups/newgroup.html',
 			controller: 'GroupsController',
 			url: '/newgroup'
+		})
+
+		.state('usergroups', {
+			templateUrl: 'app/groups/usergroups.html',
+			controller: 'GroupsController',
+			url: '/usergroups' 
 		});
 
 		// We add our $httpInterceptor into the array
@@ -54,8 +60,6 @@ angular.module('boundless', [
 .controller('BoundlessController', ['$scope', '$location', function ($scope, $location) {
 	// console.log($stateParams);s
 	$scope.go = function (path) {
-		console.log('GO!');
-		console.log('redirected');
 		$location.path(path);
 	};
 
