@@ -34,7 +34,7 @@ module.exports = function (app) {
   });
 
   app.post('/sendgrid', function (req, res) {
-    userController.findByEmail(req.body.From, function (user) {
+    userController.findByEmail(req.body.from, function (user) {
       req.user = user;
 
       if (req.body.subject.slice(0,5).toUpperCase() === "JOIN ") {
