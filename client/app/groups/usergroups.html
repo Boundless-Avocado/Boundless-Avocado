@@ -1,11 +1,10 @@
 <div ng-repeat="usergroups in data.usergroups"> 
 	<div class="col-md-4">
 
-		<h2><a ng-click="getUsers(groups)">{{ usergroups.name }}</a></h2>
-	  <p>{{ data.users }}</p>
+		<h2><a ng-click="getUsers(usergroups)">{{ usergroups.name }}</a></h2>
 	  
 	  <ul> 
-	  	<li ng-repeat='users in data.users'> {{username}} </li>
+	  	<li ng-repeat='users in data.users'> {{users.username}} </li>
 	  </ul>	
 	  
 	  <p ><a class="btn btn-default" ng-click='pingGroup(groups)' href="#" role="button">Ping Group &raquo;</a></p>

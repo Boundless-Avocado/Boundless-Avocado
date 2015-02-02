@@ -53,6 +53,7 @@ angular.module('boundless.services', [])
 	};
 
 	var getUsers = function(data) {
+		console.log(data.name)
 		return $http({
 				method: 'GET',
 				url: '/api/groups/' + data.name + '/',
@@ -64,11 +65,13 @@ angular.module('boundless.services', [])
 	};
 
 	var userGroups = function(data) {
-		console.log('service ' + data);
 		return $http({
 			method: 'GET',
 			url: '/api/users/' + data.username + '/groups',
 			data: data
+		})
+		.then(function(resp) {
+			return resp.data;
 		})
 	};
 

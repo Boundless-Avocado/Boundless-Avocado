@@ -74,8 +74,9 @@ angular.module('boundless.groups', [])
 			});
 	};
 
+	//fetches all the members in the group
 	$scope.getUsers = function(groupName) {
-		console.log('getUsers in group.js: ' + groupName.name)
+		console.log('first step: ' + groupName);
 		Groups.getUsers(groupName)
 			.then(function(data) {
 				console.log('getUsers data: ' + data);
@@ -83,6 +84,7 @@ angular.module('boundless.groups', [])
 			})
 	};
 
+	//fetches all the groups a user is a member of
 	$scope.userGroups = function() {
 		console.log('groups.js');
 		var username = $window.localStorage.getItem('username');
@@ -91,7 +93,8 @@ angular.module('boundless.groups', [])
 		};
 
 		Groups.userGroups(data)
-			.then(function() {
+			.then(function(data) {
+				console.log(data);
 				$scope.data.usergroups = data;
 			})
 			.catch(function(error) {
