@@ -10,16 +10,25 @@ module.exports = {
       to: number,
       from: '+14158149655'
     }, function(err, message) {
-      process.stdout.write(message.sid);
+      if (err) {
+        return console.error(err);
+      }
+      console.log(message);
     });
   },
 
   sendEmail: function(subject, message, address) {
-    var email = new sendgrid.Email();
-    email.addTo(address);
-    email.setFrom('david@dsernst.com');
-    email.setSubject(subject);
-    email.setHtml(message);
-    sendgrid.send(email);
+    var email = new sendgrid.Email({
+      to: address,
+      from: 'david@dsernst.com',
+      subject: subject,
+      html: message
+    });
+    sendgrid.send(email, function(err, json) {
+      if (err) {
+        return console.error(err);
+      }
+      console.log(json);
+    });
   }
 };
