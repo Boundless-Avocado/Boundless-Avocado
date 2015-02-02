@@ -5,6 +5,20 @@ var utils = require('../config/utils');
 
 
 module.exports = {
+  findByUsername: function (username, callback) {
+    User.findOne({where: {username: username}})
+    .then(function (user) {
+      if (!user) {
+        console.log('No user with username ' + username + ' in database');
+      } else {
+        if (callback) {
+          callback(user);
+        } else {
+          return user;
+        }
+      }
+    });
+  },
   findByPhone: function (phone, callback) {
     User.findOne({where: {phone: phone}})
     .then(function (user) {
