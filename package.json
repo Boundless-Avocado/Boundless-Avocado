@@ -24,7 +24,6 @@
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
-    "jwt-simple": "^0.2.0",
     "morgan": "^1.1.1",
     "mysql": "^2.5.4",
     "sendgrid": "1.5.0",
