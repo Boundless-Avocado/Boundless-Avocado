@@ -1,10 +1,13 @@
 var User = require('./userModel.js');
-var Q = require('q');
-var jwt = require('jwt-simple');
-var utils = require('../config/utils');
-
 
 module.exports = {
+  parseUserUrl: function (req, res, next, username) {
+    module.exports.findByUsername(username, function (user) {
+      req.user = user;
+      next();
+    });
+  },
+
   findByUsername: function (username, callback) {
     User.findOne({where: {username: username}})
     .then(function (user) {
@@ -19,6 +22,7 @@ module.exports = {
       }
     });
   },
+
   findByPhone: function (phone, callback) {
     User.findOne({where: {phone: phone}})
     .then(function (user) {
@@ -49,30 +53,11 @@ module.exports = {
     });
   },
 
-  signin: function (req, res, next) {
-    var username = req.body.username,
-        password = req.body.password;
-
-    var findUser = Q.nbind(User.findOne, User);
-    findUser({username: username})
-      .then(function (user) {
-        if (!user) {
-          next(new Error('User does not exist'));
-        } else {
-          return user.comparePasswords(password)
-            .then(function(foundUser) {
-              if (foundUser) {
-                var token = jwt.encode(user, 'secret');
-                res.json({token: token});
-              } else {
-                return next(new Error('No user'));
-              }
-            });
-        }
-      })
-      .catch(function (error) {
-        next(error);
-      });
+  browse: function (req, res) {
+    User.findAll()
+    .then(function (users) {
+      res.end(JSON.stringify(users));
+    });
   },
 
   signup: function (req, res, next) {
@@ -100,28 +85,10 @@ module.exports = {
       });
   },
 
-  checkAuth: function (req, res, next) {
-    // checking to see if the user is authenticated
-    // grab the token in the header is any
-    // then decode the token, which we end up being the user object
-    // check to see if that user exists in the database
-    var token = req.headers['x-access-token'];
-    if (!token) {
-      next(new Error('No token'));
-    } else {
-      var user = jwt.decode(token, 'secret');
-      var findUser = Q.nbind(User.findOne, User);
-      findUser({username: user.username})
-        .then(function (foundUser) {
-          if (foundUser) {
-            res.send(200);
-          } else {
-            res.send(401);
-          }
-        })
-        .catch(function (error) {
-          next(error);
-        });
-    }
+  groups: function (req, res) {
+    req.user.getGroups()
+    .then(function (groups) {
+      res.end(JSON.stringify(groups));
+    });
   }
 };
