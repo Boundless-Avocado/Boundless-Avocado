@@ -25,6 +25,7 @@
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
     "morgan": "^1.1.1",
+    "multiparty": "^4.1.1",
     "mysql": "^2.5.4",
     "sendgrid": "1.5.0",
     "sequelize": "^2.0.0-rc8",

@@ -1,5 +1,6 @@
 var groupController = require('../groups/groupController.js');
 var userController = require('../users/userController.js');
+var multiparty = require('multiparty');
 
 module.exports = function (app) {
   app.post('/twilio', function (req, res){
@@ -34,31 +35,32 @@ module.exports = function (app) {
   });
 
   app.post('/sendgrid', function (req, res) {
-    console.log(req);
-    console.log(req.body);
-    userController.findByEmail(req.body.from, function (user) {
-      req.user = user;
+    var form = new multiparty.Form();
+    form.parse(req, function(from){
+      userController.findByEmail(from, function (user) {
+        req.user = user;
 
-      if (req.body.subject.slice(0,5).toUpperCase() === "JOIN ") {
-        groupController.find(req.body.text.slice(5), function (group) {
-          req.group = group;
-          req.body.username = user.username;
-          groupController.join(req, res);
-        });
+        if (req.body.subject.slice(0,5).toUpperCase() === "JOIN ") {
+          groupController.find(req.body.text.slice(5), function (group) {
+            req.group = group;
+            req.body.username = user.username;
+            groupController.join(req, res);
+          });
 
-      } else if (req.body.subject.slice(0,7).toUpperCase() === "CREATE ") {
-        req.body = {'name': req.body.Body.slice(7)};
-        groupController.create(req, res);
+        } else if (req.body.subject.slice(0,7).toUpperCase() === "CREATE ") {
+          req.body = {'name': req.body.Body.slice(7)};
+          groupController.create(req, res);
 
-      } else if (req.body.subeject.slice(0,7).toUpperCase() === "BROWSE"){
-        groupController.browse(req, res);
+        } else if (req.body.subeject.slice(0,7).toUpperCase() === "BROWSE"){
+          groupController.browse(req, res);
 
-      } else {
-        groupController.find(req.body.subject.toLowerCase(), function (group) {
-          req.group = group;
-          groupController.ping(req, res);
-        });
-      }
+        } else {
+          groupController.find(req.body.subject.toLowerCase(), function (group) {
+            req.group = group;
+            groupController.ping(req, res);
+          });
+        }
+      })
     });
   });
 };
