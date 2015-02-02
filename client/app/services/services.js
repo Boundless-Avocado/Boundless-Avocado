@@ -83,11 +83,7 @@ angular.module('boundless.services', [])
 })
 
 .factory('Auth', function($http, $location, $window){ 
-	// services for authentication. On authentication, server will return a JWT from the server
-	// that JWT is then stored in localStorage as 'com.shortly'
-	// after you signin/signup open devtools, click resources,
-	// then localStorage and you'll see your token from the server
-
+		//Authorization is currently storing username in local storage
 	var signin = function(user) {
 		console.log(user);
 		return $http({
