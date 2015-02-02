@@ -44,18 +44,24 @@ angular.module('boundless', [
 			url: '/newgroup'
 		})
 
+
+		.state('usergroups', {
+			templateUrl: 'app/groups/usergroups.html',
+			controller: 'GroupsController',
+			url: '/usergroups' 
+		})
+
 		.state('/', {
 			templateUrl: 'app/auth/parent.html',
 			controller: 'BoundlessController',
 			url: '/'
 		})
 
-		.state('usergroups', {
-			templateUrl: 'app/groups/usergroups.html',
-			controller: 'GroupsController',
-			url: '/usergroups' 
-		});
-
+		.state('/navbar', {
+			templateUrl: 'app/auth/parent.html',
+			controller: 'BoundlessController',
+			url: '/'
+		});	
 		// We add our $httpInterceptor into the array
 		// of interceptors. Think of it like middleware for your ajax calls
 	$httpProvider.interceptors.push('AttachTokens');

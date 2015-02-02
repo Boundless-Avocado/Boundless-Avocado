@@ -3,7 +3,6 @@ angular.module('boundless.services', [])
 	//services to fetch & make groups
 .factory('Groups', function($http) {
 
-
 	var getGroups = function() {
 		return $http({
 			method: 'GET',
