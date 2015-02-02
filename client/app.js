@@ -46,7 +46,7 @@ angular.module('boundless', [
 
 		.state('/', {
 			templateUrl: 'app/auth/parent.html',
-			controller: 'AuthController',
+			controller: 'BoundlessController',
 			url: '/'
 		})
 
@@ -64,7 +64,6 @@ angular.module('boundless', [
 
 	//dont know what to use controller for here
 .controller('BoundlessController', ['$scope', '$location', function ($scope, $location) {
-	// console.log($stateParams);s
 	$scope.go = function (path) {
 		$location.path(path);
 	};
