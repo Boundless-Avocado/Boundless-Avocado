@@ -1,7 +1,7 @@
 var Group = require('./groupModel.js');
 require('../db/relationshipModel.js'); // sets up many-to-many relationship
 require('../db/pingModel.js'); // sets up Pings table
-var utils = require('../config/utils');
+var clients = require('../clients/clientController.js');
 
 module.exports = {
   parseGroupUrl: function (req, res, next, groupName) {
@@ -79,8 +79,8 @@ module.exports = {
       req.group.getUsers()
       .then(function (users) {
         users.forEach(function (user) {
-          utils.twilio(req.user.username + " says, 'Lets get together for some " + req.group.name + " today!'", user.phone);
-          utils.sendgrid("Why don't we get together for some " + req.group.name + " today?", req.user.username + " invited you!", user.email);
+          clients.sendSMS(req.user.username + " says, 'Lets get together for some " + req.group.name + " today!'", user.phone);
+          clients.sendEmail("Why don't we get together for some " + req.group.name + " today?", req.user.username + " invited you!", user.email);
         })
         res.end('Pinged ' + users.length + ' members of ' + req.group.name);
       });

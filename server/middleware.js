@@ -12,7 +12,7 @@ module.exports = function (app, express) {
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
-  app.use(express.static(__dirname + '/../../client'));
+  app.use(express.static(__dirname + '/../client'));
 
 
   app.use('/api/users', userRouter); // use user router for all user request
@@ -24,8 +24,7 @@ module.exports = function (app, express) {
   app.use(helpers.errorHandler);
 
   // inject our routers into their respective route files
-  require('../users/userRoutes.js')(userRouter);
-  require('../groups/groupRoutes.js')(groupRouter);
-  require('../clients/clientRoutes.js')(clientRouter);
-
+  require('./users/userRoutes.js')(userRouter);
+  require('./groups/groupRoutes.js')(groupRouter);
+  require('./clients/clientRoutes.js')(clientRouter);
 };
