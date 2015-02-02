@@ -56,11 +56,7 @@ angular.module('boundless', [
 	$scope.go = function (path) {
 		console.log('GO!');
 		console.log('redirected');
-<<<<<<< HEAD
-		$location.path( path );
-=======
 		$location.path(path);
->>>>>>> 0be5af1d61d99759d82b9ec2b3feedfa19a69a09
 	};
 
 }])

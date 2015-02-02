@@ -13,19 +13,12 @@
     "url": "https://github.com/Boundless-Avocado/Boundless-Avocado.git"
   },
   "devDependencies": {
-<<<<<<< HEAD
-    "grunt": "^0.4.4",
-    "grunt-karma": "^0.8.3",
-    "grunt-contrib-jshint": "^0.9.2",
-    "grunt-casperjs": "^2.0.0",
-    "grunt-contrib-watch": "^0.6.1",
-    "grunt-shell": "^0.6.4",
-    "grunt-nodemon": "^0.2.1",
-    "grunt-mocha-test": "^0.10.0",
-    "grunt-express-server": "^0.4.19",
-    "chai": "^1.9.1",
-=======
->>>>>>> 0be5af1d61d99759d82b9ec2b3feedfa19a69a09
+    "angular-mocks": "^1.3.11",
+    "karma": "^0.12.31",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.1.7",
+    "karma-mocha": "^0.1.10",
+    "karma-phantomjs-launcher": "^0.1.4",
     "mocha": "^1.20.1"
   },
   "dependencies": {
