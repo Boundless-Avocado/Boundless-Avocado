@@ -15,9 +15,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'node_modules/angular/angular.js',
-      'node_modules/angular-mocks/angular-mocks.js',
-      'node_modules/angular-ui-router/release/angular-ui-router.js',
+      'client/lib/angular/angular.js',
+      'client/lib/angular-mocks/angular-mocks.js',
+      'client/lib/angular-ui-router/release/angular-ui-router.js',
 
       //app code
       'client/app.js',
@@ -32,8 +32,8 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      'karma.conf.js',
-      'client/lib/**/*.js'
+      'karma.conf.js'
+      // 'client/lib/**/*.js'
     ],
 
 
