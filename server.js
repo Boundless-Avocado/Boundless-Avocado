@@ -7,7 +7,7 @@ app.listen(port);
 console.log('Server now listening on port ' + port);
 
 // configure server with middleware and routing
-require('./server/config/middleware.js')(app, express);
+require('./server/middleware.js')(app, express);
 
 // export app for testing and flexibility
 module.exports = app;
