@@ -5,6 +5,13 @@ var utils = require('../config/utils');
 
 
 module.exports = {
+  parseUserUrl: function (req, res, next, username) {
+    module.exports.findByUsername(username, function (user) {
+      req.user = user;
+      next();
+    });
+  },
+
   findByUsername: function (username, callback) {
     User.findOne({where: {username: username}})
     .then(function (user) {
@@ -19,6 +26,7 @@ module.exports = {
       }
     });
   },
+
   findByPhone: function (phone, callback) {
     User.findOne({where: {phone: phone}})
     .then(function (user) {
@@ -123,5 +131,12 @@ module.exports = {
           next(error);
         });
     }
+  },
+
+  groups: function (req, res) {
+    req.user.getGroups()
+    .then(function (groups) {
+      res.end(JSON.stringify(groups));
+    });
   }
 };
