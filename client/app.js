@@ -44,6 +44,12 @@ angular.module('boundless', [
 			url: '/newgroup'
 		})
 
+		.state('/', {
+			templateUrl: 'app/auth/parent.html',
+			controller: 'AuthController',
+			url: '/'
+		})
+
 		.state('usergroups', {
 			templateUrl: 'app/groups/usergroups.html',
 			controller: 'GroupsController',
