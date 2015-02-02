@@ -78,6 +78,7 @@ angular.module('boundless.groups', [])
 		console.log('getUsers in group.js: ' + groupName.name)
 		Groups.getUsers(groupName)
 			.then(function(data) {
+				console.log(data);
 				$scope.data.users = data;
 			})
 	};
