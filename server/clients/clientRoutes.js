@@ -30,7 +30,30 @@ module.exports = function (app) {
   });
 
   app.post('/sendgrid', function determineRoute (req, res) {
-    var user = userController.findByEmail(req.body.From);
+    userController.findByEmail(req.body.From, function (user) {
+      req.user = user;
+
+      if (req.body.subject.slice(0,5).toUpperCase() === "JOIN ") {
+        groupController.find(req.body.text.slice(5), function (group) {
+          req.group = group;
+          req.body.username = user.username;
+          groupController.join(req, res);
+        });
+      } else if (req.body.subject.slice(0,7).toUpperCase() === "CREATE ") {
+        req.body = {'name': req.body.Body.slice(7)};
+        groupController.create(req, res);
+      } else if (req.body.subeject.slice(0,7).toUpperCase() === "BROWSE"){
+        groupController.browse(req, res);
+      // } else if (req.body.body.slice(0,6).toUpperCase() === "SIGN UP") {
+      //   TODO: capture user info through sms
+      //   userController.signup(req, res);
+      } else {
+        groupController.find(req.body.subject.toLowerCase(), function (group) {
+          req.group = group;
+          groupController.ping(req, res);
+        });
+      }
+    });
   });
 
 };
