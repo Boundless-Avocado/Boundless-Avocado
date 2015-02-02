@@ -3,8 +3,6 @@ angular.module('boundless.groups', [])
 .controller('GroupsController', function($scope, $window, $location, Groups) {
 	//hold data here after quering db
 	$scope.data = {
-		//this is just dummy data to get the ng-repeat working correctly
-		// groups: [{groupName: 'Basketball'}, {groupName: 'Tennis'}, {groupName: 'Tap Dancing'}]
 		groups: Groups.data
 	};
 
@@ -81,6 +79,22 @@ angular.module('boundless.groups', [])
 				console.log(data);
 				$scope.data.users = data;
 			})
+	};
+
+	$scope.userGroups = function() {
+		var username = $window.localStorage.getItem('username');
+		var data = {
+			username: username
+		};
+
+		Groups.userGroups(data)
+			.then(function() {
+				$scope.data.usergroups = data;
+				$location.path('/usergroups.html');
+			})
+			.catch(function(error) {
+				console.log(error);
+			});
 	};
 
 	$scope.getGroups();

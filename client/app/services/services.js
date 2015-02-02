@@ -64,12 +64,21 @@ angular.module('boundless.services', [])
 		})
 	};
 
+	var userGroups = function(data) {
+		return $http({
+			method: 'GET',
+			url: '/api/users/' + data.username + '/groups',
+			data: data
+		})
+	}
+
 	return {
 		getGroups: getGroups,
 		createGroup: createGroup,
 		joinGroup: joinGroup,
 		pingGroup: pingGroup,
-		getUsers: getUsers
+		getUsers: getUsers,
+		userGroups: userGroups
 	};
 })
 
@@ -116,12 +125,12 @@ angular.module('boundless.services', [])
 	}
 
 	var signout = function() {
-		// $window.localStorage.removeItem('boundless-avocado');
-		// $location.path('/signin');
+		$window.localStorage.removeItem('boundless-avocado');
+		$location.path('/signin');
 	};
 		//checks token to check if user's session is still valid
 	var isAuth = function() {
-		// return !!$window.localStorage.getItem('boundless-avocado');
+		return !!$window.localStorage.getItem('boundless-avocado');
 	};
 
 	return {
