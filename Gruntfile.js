@@ -3,22 +3,6 @@ module.exports = function(grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     concat: {
-<<<<<<< HEAD
-    },
-
-    mochaTest: {
-      test: {
-        options: {
-          reporter: 'spec'
-        },
-        src: ['test/*.js']
-      }
-    },
-
-    nodemon: {
-      dev: {
-        script: 'server/server.js'
-=======
       options:{
         seperator:';'
       },
@@ -49,16 +33,11 @@ module.exports = function(grunt) {
       build: {
           src: 'public/dist/production.js',
           dest: 'public/dist/production.min.js'
->>>>>>> 0be5af1d61d99759d82b9ec2b3feedfa19a69a09
       }
     },
 
     jshint: {
       files: [
-<<<<<<< HEAD
-        'Gruntfile.js',
-=======
->>>>>>> 0be5af1d61d99759d82b9ec2b3feedfa19a69a09
         'client/**/*.js',
         'server/**/*.js'
       ],
@@ -67,54 +46,11 @@ module.exports = function(grunt) {
         jshintrc: '.jshintrc',
         ignores: [
           'client/lib/**/*.js',
-<<<<<<< HEAD
-=======
           'Gruntfile.js',
->>>>>>> 0be5af1d61d99759d82b9ec2b3feedfa19a69a09
         ]
       }
     },
 
-<<<<<<< HEAD
-    // watch: {
-    //   scripts: {
-    //     files: [
-    //       'client/**/*.js',
-    //       'server/**/*.js',
-    //     ],
-    //     tasks: [
-        
-    //     ]
-    //   },
-    //   css: {
-    //     files: 
-    //     tasks: []
-    //   }
-    // },
-
-    // shell: {
-    //   prodServer: {
-    //     command: 'git push azure master',
-    //     options: {
-    //       stdout: true,
-    //       stderr: true,
-    //       failOnError: true
-    //     }
-    //   }
-    // },
-
-  });
-
-  grunt.loadNpmTasks('grunt-contrib-jshint');
-  grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-mocha-test');
-  grunt.loadNpmTasks('grunt-nodemon');
-  grunt.loadNpmTasks('grunt-shell');
-  grunt.loadNpmTasks('grunt-express-server');
-  grunt.loadNpmTasks('grunt-karma');
-  grunt.loadNpmTasks('grunt-casperjs');
-
-=======
     cssmin: {
       target: {
         files: {
@@ -177,29 +113,12 @@ module.exports = function(grunt) {
 
     grunt.task.run([ 'watch' ]);
   });
->>>>>>> 0be5af1d61d99759d82b9ec2b3feedfa19a69a09
 
   ////////////////////////////////////////////////////
   // Main grunt tasks
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-<<<<<<< HEAD
-    'jshint',
-    'mochaTest'
-  ]);
-
-  // grunt.registerTask('upload', [
-  //   grunt.task.run([ 'shell:prodServer' ])
-  // ]);
-
-
-  grunt.registerTask('deploy', [
-    'test'
-    // 'upload'
-  ]);
-
-=======
     'jshint'
   ]);
 
@@ -232,6 +151,5 @@ module.exports = function(grunt) {
     'concat', 'uglify'
     // add your deploy tasks here
   ]);
->>>>>>> 0be5af1d61d99759d82b9ec2b3feedfa19a69a09
 
 };

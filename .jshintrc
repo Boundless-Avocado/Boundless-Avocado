@@ -1,29 +1,4 @@
 {
-<<<<<<< HEAD
-  "bitwise": false,
-  "camelcase": false,
-  "eqeqeq": true,
-  "es3": false,
-  "forin": false,
-  "freeze": false,
-  "noempty": false,
-  "nonew": true,
-  "plusplus": false,
-  "strict": false,
-  "laxbreak": true,
-  "multistr": true,
-  "eqnull": true,
-  "expr": true,
-  "asi": true,
-  "immed": false,
-  "latedef": false,
-  "newcap": false,
-  "noarg": false,
-  "trailing": false,
-  "loopfunc": true,
-  "smarttabs": true
-}
-=======
     "node": true,
     "esnext": true,
     "bitwise": true,
@@ -44,4 +19,3 @@
     "smarttabs": true,
     "white": true
 }
->>>>>>> 0be5af1d61d99759d82b9ec2b3feedfa19a69a09

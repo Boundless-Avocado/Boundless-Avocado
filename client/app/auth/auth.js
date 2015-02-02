@@ -7,7 +7,7 @@ angular.module('boundless.auth', [])
 		//at sign in, user is issued a token
 	$scope.signin = function() {
 			//storing username in local storage to retrieve later
-		// $window.localStorage.setItem('username', $scope.user.username);
+		$window.localStorage.setItem('username', $scope.user.username);
 		console.log('localStorage = ' + $window.localStorage.getItem('username'));
 		
 		Auth.signin($scope.user)
