@@ -1,4 +1,32 @@
 body {
-  padding-top: 50px;
-  padding-bottom: 20px;
+  padding: 80px 0;
 }
+
+.bs-docs-masthead {
+padding: 80px 0;
+}
+
+.container {
+padding-right: 15px;
+padding-left: 15px;
+margin-right: auto;
+margin-left: auto;
+}
+
+element.style {
+}
+.bs-docs-masthead .lead {
+margin: 0 auto 30px;
+font-size: 20px;
+}
+
+.bs-docs-masthead .version {
+margin-top: -15px;
+margin-bottom: 30px;
+color: #9783b9;
+}
+
+.bs-docs-masthead .lead {
+font-size: 30px;
+}
+
