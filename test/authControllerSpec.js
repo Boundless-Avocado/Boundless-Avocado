@@ -41,24 +41,16 @@ describe('AuthController', function () {
 
   it('should store username in localStorage after signup', function() {
     // create a fake username for auth
-    var data ={username: 'test', phone: 1234567890}
+    $scope.user = {username: 'test', phone: 1234567890};
 
-    $httpBackend.expectPOST('/api/users/').respond({token: token});
-    $scope.signup(data);
+    $httpBackend.expectPOST('/api/users/').respond({});
+    $scope.signup();
     $httpBackend.flush();
-    expect($window.localStorage.getItem('username')).to.be(data.username);
+    expect($window.localStorage.getItem('username')).to.be('test');
   });
 
   it('should have a signin method', function() {
     expect($scope.signin).to.be.a('function');
   });
 
-  // it('should store token in localStorage after signin', function() {
-  //   // create a fake JWT for auth
-  //   var token = 'sjj232hwjhr3urw90rof';
-  //   $httpBackend.expectPOST('/api/users/').respond({token: token});
-  //   $scope.signin();
-  //   $httpBackend.flush();
-  //   expect($window.localStorage.getItem('username')).to.be(token);
-  // });
 });
