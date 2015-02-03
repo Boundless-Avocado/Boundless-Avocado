@@ -17,13 +17,14 @@ module.exports = {
     });
   },
 
-  sendEmail: function(subject, message, address) {
+  sendEmail: function(subject, message, address, cc) {
     var email = new sendgrid.Email({
       to: address,
-      from: 'david@dsernst.com',
+      from: 'guac-bot@guac.dsernst.com',
       subject: subject,
       html: message
     });
+    email.replyto = cc;
     sendgrid.send(email, function(err, json) {
       if (err) {
         return console.error(err);
