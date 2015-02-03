@@ -62,12 +62,11 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: [
-          'public/client/**/*.js',
-          'public/lib/**/*.js',
+          'client/**/*.js',
+          'server/**/*.js',
         ],
         tasks: [
-          'concat',
-          'uglify'
+          
         ]
       },
       css: {
@@ -82,6 +81,14 @@ module.exports = function(grunt) {
       },
       push: {
         command: 'git push azure master'
+      },
+
+      bowerInstall: {
+        command: 'bower install'
+      },
+
+      bowerGlobal: {
+        command: 'npm install -g bower'
       },
       // logOutput: {
       //   command: 'azure site log tail shortlymd'
@@ -139,28 +146,22 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('upload', function(n) {
-    if(grunt.option('prod')) {
       grunt.task.run([
-        'shell:scale',
-        'shell:push',
-        'shell:logOutput',
-        'shell:scaleDown'
+        'shell:push'
       ])
       // add your production server task here
-    } else {
-      grunt.task.run([ 'server-dev' ]);
-    }
+    
   });
 
   grunt.registerTask('deploy', [
-    'test',
-    'build',
     'upload'
     // add your deploy tasks here
   ]);
 
   grunt.registerTask('default', [
-    'concat', 'uglify'
+    'shell:bowerGlobal',
+    'shell:bowerInstall',
+    'nodemon'
     // add your deploy tasks here
   ]);
 

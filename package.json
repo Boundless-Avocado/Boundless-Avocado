@@ -26,6 +26,13 @@
   "dependencies": {
     "body-parser": "^1.4.3",
     "express": "^4.4.5",
+    "grunt-contrib-jshint": "^0.11.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-karma": "^0.10.1",
+    "grunt-mocha-test": "^0.12.7",
+    "grunt-nodemon": "^0.4.0",
+    "grunt-shell": "^1.1.1",
+    "grunt-simple-mocha": "^0.4.0",
     "morgan": "^1.1.1",
     "mysql": "^2.5.4",
     "sendgrid": "1.5.0",
