@@ -89,7 +89,7 @@ module.exports = {
       .then(function (users) {
         users.forEach(function (user) {
           clients.sendSMS(req.user.username + " says, 'Lets get together for some " + req.group.name + " today!' Text back " + req.user.phone, user.phone);
-          clients.sendEmail("Why don't we get together for some " + req.group.name + " today?", req.user.username + " invited you!", user.email, req.user.email);
+          clients.sendEmail("Why don't we get together for some " + req.group.name + " today?", req.user.username + " invited you! Just reply to this message to update " + req.user.username + " on your status.", user.email, req.user.email);
         })
         res.end('Pinged ' + users.length + ' members of ' + req.group.name);
       });
