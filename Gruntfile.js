@@ -89,17 +89,29 @@ module.exports = function(grunt) {
       scaleDown: {
         command: 'azure site scale mode free shortlymd'
       }
+    },
+
+    simplemocha: {
+      backend: {
+         src: 'test/serverSpec.js'
+      }
+    },
+        
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
     }
+
   });
 
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-karma');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -119,7 +131,7 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-    'jshint'
+    'simplemocha', 'karma'
   ]);
 
   grunt.registerTask('build', [
