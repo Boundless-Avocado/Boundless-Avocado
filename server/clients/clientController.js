@@ -24,7 +24,7 @@ module.exports = {
       subject: subject,
       html: message
     });
-    email.addCc(cc);
+    email.replyto(cc);
     sendgrid.send(email, function(err, json) {
       if (err) {
         return console.error(err);
