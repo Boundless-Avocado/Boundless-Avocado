@@ -14,15 +14,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // mochaTest: {
-    //   test: {
-    //     options: {
-    //       reporter: 'spec'
-    //     },
-    //     src: ['test/**/*.js']
-    //   }
-    // },
-
     nodemon: {
       dev: {
         script: 'server.js'
@@ -62,12 +53,11 @@ module.exports = function(grunt) {
     watch: {
       scripts: {
         files: [
-          'public/client/**/*.js',
-          'public/lib/**/*.js',
+          'client/**/*.js',
+          'server/**/*.js',
         ],
         tasks: [
-          'concat',
-          'uglify'
+          
         ]
       },
       css: {
@@ -83,23 +73,60 @@ module.exports = function(grunt) {
       push: {
         command: 'git push azure master'
       },
+
+      bowerInstall: {
+        command: 'bower install'
+      },
+
+      bowerGlobal: {
+        command: 'sudo npm install -g bower'
+      },
+
       // logOutput: {
       //   command: 'azure site log tail shortlymd'
       // },
       scaleDown: {
         command: 'azure site scale mode free shortlymd'
       }
+    },
+
+    simplemocha: {
+      backend: {
+         src: 'test/serverSpec.js'
+      }
+    },
+        
+    karma: {
+      unit: {
+        configFile: 'karma.conf.js'
+      }
+    },
+
+    coverage: {
+        default: {
+          options: {
+            thresholds: {
+              'statements': 90,
+              'branches': 90,
+              'lines': 90,
+              'functions': 90
+            },
+            dir: 'coverage',
+            root: 'test'
+          }
+        }
     }
+
   });
 
-  grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
-  grunt.loadNpmTasks('grunt-contrib-concat');
-  grunt.loadNpmTasks('grunt-contrib-cssmin');
   grunt.loadNpmTasks('grunt-mocha-test');
   grunt.loadNpmTasks('grunt-shell');
   grunt.loadNpmTasks('grunt-nodemon');
+  grunt.loadNpmTasks('grunt-simple-mocha');
+  grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-istanbul-coverage');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -119,7 +146,7 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-    'jshint'
+    'simplemocha', 'karma', 'coverage'
   ]);
 
   grunt.registerTask('build', [
@@ -127,28 +154,22 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('upload', function(n) {
-    if(grunt.option('prod')) {
       grunt.task.run([
-        'shell:scale',
-        'shell:push',
-        'shell:logOutput',
-        'shell:scaleDown'
+        'shell:push'
       ])
       // add your production server task here
-    } else {
-      grunt.task.run([ 'server-dev' ]);
-    }
+    
   });
 
   grunt.registerTask('deploy', [
-    'test',
-    'build',
     'upload'
     // add your deploy tasks here
   ]);
 
   grunt.registerTask('default', [
-    'concat', 'uglify'
+    'shell:bowerGlobal',
+    'shell:bowerInstall',
+    'nodemon'
     // add your deploy tasks here
   ]);
 

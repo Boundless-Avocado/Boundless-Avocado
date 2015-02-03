@@ -10,7 +10,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'chai', 'jasmine'],
 
 
     // list of files / patterns to load in the browser
@@ -32,7 +32,9 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
-      'karma.conf.js'
+      'karma.conf.js',
+      'test/serverSpec.js',
+      'test/Stubs.js'
       // 'client/lib/**/*.js'
     ],
 
@@ -42,11 +44,18 @@ module.exports = function(config) {
     preprocessors: {
     },
 
+    coverageReporter: {
+      type: 'json',
+      dir: 'test/coverage'
+    },
+
     plugins : [
         'karma-phantomjs-launcher',
         'karma-mocha',
         'karma-chai',
-        'karma-chrome-launcher'
+        'karma-chrome-launcher',
+        'karma-jasmine',
+        
       ],
 
 
