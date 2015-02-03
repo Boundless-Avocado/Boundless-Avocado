@@ -59,8 +59,8 @@ module.exports = function (app) {
           };
           groupController.create(req, res);
 
-        } else if (fields.subject[0].slice(0,7).toUpperCase() === "BROWSE"){
-          groupController.browse(req, res);
+        // } else if (fields.subject[0].slice(0,7).toUpperCase() === "BROWSE"){
+        //   groupController.browse(req, res);
 
         } else {
           groupController.find(fields.subject[0].toLowerCase(), function (group) {
