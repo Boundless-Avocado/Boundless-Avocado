@@ -14,15 +14,6 @@ module.exports = function(grunt) {
       }
     },
 
-    // mochaTest: {
-    //   test: {
-    //     options: {
-    //       reporter: 'spec'
-    //     },
-    //     src: ['test/**/*.js']
-    //   }
-    // },
-
     nodemon: {
       dev: {
         script: 'server.js'
@@ -88,8 +79,9 @@ module.exports = function(grunt) {
       },
 
       bowerGlobal: {
-        command: 'npm install -g bower'
+        command: 'sudo npm install -g bower'
       },
+
       // logOutput: {
       //   command: 'azure site log tail shortlymd'
       // },
