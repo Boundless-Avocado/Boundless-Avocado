@@ -1,6 +1,15 @@
-# Guac Friends
+# GuacFriends
 
 #### Meetup on the Fly
+
+GuacFriends is the easiest way to form groups of common interest & invite your group to join you at any time. Get SMS invitations when others want to do the activity.
+
+* You don't need to remember who told you they're interested.
+* Everyone can manage their own membership to join and leave.
+* No need to RSVP or create calendar events.
+* You can control it with the web client, SMS, or email!
+
+### "An Avocado a day keeps the loneliness away."
 
 ## Team
 
@@ -17,7 +26,7 @@
     1. [Configuring API Keys](#configuring-api-keys)
     1. [Running the Server](#running-the-server)
     1. [Roadmap](#roadmap)
-1. [Contributing](#contributing)
+    1. [Contributing](#contributing)
 
 ## Usage
 
@@ -68,6 +77,6 @@ It should now be accessible at `http://localhost:8080`.
 
 View our feature wishlist [here](https://github.com/Boundless-Avocado/Boundless-Avocado/wiki/Feature-Wishlist).
 
-## Contributing
+### Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md) for contribution guidelines.
