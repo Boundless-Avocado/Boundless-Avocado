@@ -43,7 +43,7 @@ module.exports = function (app) {
       console.log(start);
       var end = fields.from[0].indexOf('>');
       console.log(end);
-      userController.findByEmail(fields.from.slice(start, end), function (user) {
+      userController.findByEmail(fields.from[0].slice(start, end), function (user) {
         req.user = user;
 
         if (req.body.subject.slice(0,5).toUpperCase() === "JOIN ") {
