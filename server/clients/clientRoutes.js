@@ -36,8 +36,10 @@ module.exports = function (app) {
 
   app.post('/sendgrid', function (req, res) {
     var form = new multiparty.Form();
-    form.parse(req, function(from){
-      userController.findByEmail(from, function (user) {
+    form.parse(req, function(err, fields, files) {
+      console.log(fields);
+      console.log(files);
+      userController.findByEmail(fields.from, function (user) {
         req.user = user;
 
         if (req.body.subject.slice(0,5).toUpperCase() === "JOIN ") {
