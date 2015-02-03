@@ -14,6 +14,7 @@
 1. [Development](#development)
     1. [Requirements](#requirements)
     1. [Installing Dependencies](#installing-dependencies)
+    1. [Configuring API Keys](#configuring-api-keys)
     1. [Running the Server](#running-the-server)
     1. [Roadmap](#roadmap)
 1. [Contributing](#contributing)
@@ -42,6 +43,17 @@ sudo npm install -g bower nodemon
 bower install
 ```
 
+### Configuring API Keys
+
+You'll need API keys to connect to Twilio and Sendgrid. Send us a message for ours or sign up for their free trials. To configure the keys, run these commands from the terminal:
+
+```sh
+export TWILIO_ACCOUNT_SID=keyhere;
+export TWILIO_AUTH_TOKEN=keyhere;
+export SENDGRID_API_USER=keyhere;
+export SENDGRID_API_KEY=keyhere;
+```
+
 ### Running the Server
 
 From within the root directory:
@@ -50,10 +62,11 @@ From within the root directory:
 nodemon
 ```
 
+It should now be accessible at `http://localhost:8080`.
+
 ### Roadmap
 
-View the feature wishlist [here](https://github.com/Boundless-Avocado/Boundless-Avocado/wiki/Feature-Wishlist)
-
+View our feature wishlist [here](https://github.com/Boundless-Avocado/Boundless-Avocado/wiki/Feature-Wishlist).
 
 ## Contributing
 
