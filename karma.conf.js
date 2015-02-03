@@ -44,12 +44,18 @@ module.exports = function(config) {
     preprocessors: {
     },
 
+    coverageReporter: {
+      type: 'json',
+      dir: 'test/coverage'
+    },
+
     plugins : [
         'karma-phantomjs-launcher',
         'karma-mocha',
         'karma-chai',
         'karma-chrome-launcher',
-        'karma-jasmine'
+        'karma-jasmine',
+        
       ],
 
 

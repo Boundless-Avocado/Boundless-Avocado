@@ -100,6 +100,21 @@ module.exports = function(grunt) {
       unit: {
         configFile: 'karma.conf.js'
       }
+    },
+
+    coverage: {
+        default: {
+          options: {
+            thresholds: {
+              'statements': 90,
+              'branches': 90,
+              'lines': 90,
+              'functions': 90
+            },
+            dir: 'coverage',
+            root: 'test'
+          }
+        }
     }
 
   });
@@ -111,6 +126,7 @@ module.exports = function(grunt) {
   grunt.loadNpmTasks('grunt-nodemon');
   grunt.loadNpmTasks('grunt-simple-mocha');
   grunt.loadNpmTasks('grunt-karma');
+  grunt.loadNpmTasks('grunt-istanbul-coverage');
 
   grunt.registerTask('server-dev', function (target) {
     // Running nodejs in a different process and displaying output on the main console
@@ -130,7 +146,7 @@ module.exports = function(grunt) {
   ////////////////////////////////////////////////////
 
   grunt.registerTask('test', [
-    'simplemocha', 'karma'
+    'simplemocha', 'karma', 'coverage'
   ]);
 
   grunt.registerTask('build', [
