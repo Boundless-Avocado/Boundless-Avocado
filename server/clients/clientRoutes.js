@@ -54,7 +54,7 @@ module.exports = function (app) {
 
         } else if (fields.subject[0].slice(0,7).toUpperCase() === "CREATE ") {
           req.body = {
-            'name': req.body.Body.slice(7),
+            'name': fields.subject[0].slice(7),
             'username': req.user.username
           };
           groupController.create(req, res);
