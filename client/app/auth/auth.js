@@ -9,9 +9,9 @@ angular.module('boundless.auth', [])
 			//storing username in local storage to retrieve later
 		$window.localStorage.setItem('username', $scope.user.username);
 		console.log('localStorage = ' + $window.localStorage.getItem('username'));
-		
+		$location.path('/groups');
 		Auth.signin($scope.user)
-			.then(function(token) {
+			.then(function() {
 					//this is where we will will set a token/cookie/jwt
 				$location.path('/groups');
 			})

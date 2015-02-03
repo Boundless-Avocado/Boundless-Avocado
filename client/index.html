@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html ng-app='boundless'>
 	<head>
-		<title>Boundless</title>
 		<link rel='stylesheet' type='text/css' href='styles/stylesheet.css' />
 		<link href="lib/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 
@@ -10,11 +9,27 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<meta name="description" content="">
 		<meta name="author" content="">
-
-		<link rel="icon" href="../../favicon.ico">
+		<link rel="apple-touch-icon" sizes="57x57" href="/icons/apple-touch-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="/icons/apple-touch-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/icons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="/icons/apple-touch-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/icons/apple-touch-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="/icons/apple-touch-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="/icons/apple-touch-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="/icons/apple-touch-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon-180x180.png">
+		<link rel="icon" type="image/png" href="/icons/favicon-32x32.png" sizes="32x32">
+		<link rel="icon" type="image/png" href="/icons/android-chrome-192x192.png" sizes="192x192">
+		<link rel="icon" type="image/png" href="/icons/favicon-96x96.png" sizes="96x96">
+		<link rel="icon" type="image/png" href="/icons/favicon-16x16.png" sizes="16x16">
+		<link rel="manifest" href="/icons/android-chrome-manifest.json">
+		<link rel="shortcut icon" href="/icons/favicon.ico">
+		<meta name="msapplication-TileColor" content="#da532c">
+		<meta name="msapplication-TileImage" content="/icons/mstile-144x144.png">
+		<meta name="theme-color" content="#ffffff">
 
 		<title>GUACAMOLE!</title>
-		
+
 
 	</head>
 	<body>
@@ -30,7 +45,7 @@
 		      </button>
 		      <a class="navbar-brand" href="/#/">GUAC FRIENDS</a>
 		    </div>
-		    
+
 		    <!-- collapsed navbar if screen size is too narrow -->
 		    <div id="navbar" class="navbar-collapse collapse">
 		      <form class="navbar-form navbar-right">
@@ -40,21 +55,21 @@
 		        <div class="form-group">
 		          <input type="password" placeholder="Password" class="form-control">
 		        </div> -->
-		        <button type="submit" ng-click=go('/groups') class="btn btn-success">Groups</button>
-		        <button type="submit" ng-click=go('/newgroup') class="btn btn-success">Create Group</button>
+		        <button type="submit" ng-click=go('/groups') class="btn btn-success">All Groups</button>
 		        <button type="submit" ng-click=go('/usergroups') class="btn btn-success">My Groups</button>
+		        <button type="submit" ng-click=go('/newgroup') class="btn btn-success">Create Group</button>
 		        <button type="submit" ng-click=go('/signout') class="btn btn-success">Log Out</button>
 
 		      </form>
 		    </div><!--/.navbar-collapse -->
 		  </div>
 		</nav>
-		
+
 
 		<!-- Where Angular will render different html -->
 			<div class="container" ui-view>
 
-		</div> 
+		</div>
 
 		<script src="lib/angular/angular.js"></script>
 		<script src="lib/angular-ui-router/release/angular-ui-router.js"></script>
@@ -65,6 +80,6 @@
 		<script src='app/services/services.js'></script>
 		<script src='app.js'></script>
 	</body>
-	
+
 </html>
 
