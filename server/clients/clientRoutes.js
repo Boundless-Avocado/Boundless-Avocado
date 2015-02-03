@@ -15,11 +15,14 @@ module.exports = function (app) {
         });
 
       } else if (req.body.Body.slice(0,7).toUpperCase() === "CREATE ") {
-        req.body = {'name': req.body.Body.slice(7)};
+        req.body = {
+          'name': req.body.Body.slice(7),
+          'username': req.user.username
+        };
         groupController.create(req, res);
 
-      } else if (req.body.Body === "BROWSE"){
-        groupController.browse(req, res);
+      // } else if (req.body.Body === "BROWSE"){
+      //   groupController.browse(req, res);
 
       // } else if (req.body.body.slice(0,7).toUpperCase() === "SIGNUP ") {
       //   TODO: prompt user info via sms
@@ -37,31 +40,30 @@ module.exports = function (app) {
   app.post('/sendgrid', function (req, res) {
     var form = new multiparty.Form();
     form.parse(req, function(err, fields, files) {
-      // console.log(fields);
-      // console.log(files);
       var start = fields.from[0].indexOf('<');
-      console.log(start);
       var end = fields.from[0].indexOf('>');
-      console.log(end);
       userController.findByEmail(fields.from[0].slice(start + 1, end), function (user) {
         req.user = user;
 
-        if (req.body.subject.slice(0,5).toUpperCase() === "JOIN ") {
-          groupController.find(req.body.text.slice(5), function (group) {
+        if (fields.subject[0].slice(0,5).toUpperCase() === "JOIN ") {
+          groupController.find(fields.subject[0].slice(5), function (group) {
             req.group = group;
             req.body.username = user.username;
             groupController.join(req, res);
           });
 
-        } else if (req.body.subject.slice(0,7).toUpperCase() === "CREATE ") {
-          req.body = {'name': req.body.Body.slice(7)};
+        } else if (fields.subject[0].slice(0,7).toUpperCase() === "CREATE ") {
+          req.body = {
+            'name': req.body.Body.slice(7),
+            'username': req.user.username
+          };
           groupController.create(req, res);
 
-        } else if (req.body.subeject.slice(0,7).toUpperCase() === "BROWSE"){
+        } else if (fields.subject[0].slice(0,7).toUpperCase() === "BROWSE"){
           groupController.browse(req, res);
 
         } else {
-          groupController.find(req.body.subject.toLowerCase(), function (group) {
+          groupController.find(fields.subject[0].toLowerCase(), function (group) {
             req.group = group;
             groupController.ping(req, res);
           });
